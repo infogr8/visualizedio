@@ -1,0 +1,125 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic);
+
+
+/* navbarshadow*/
+
+.top {
+    background-color:  #f7f7f7;
+/*    background-color:  #0d1e2a;*/
+    font-family: 'Lato', sans-serif;
+    min-height: 120px;
+border-top: 2px solid #35a9dc;
+}
+
+.top h1{
+    font-size: 2.1em;
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
+    text-align: center;
+    padding-top: 18px;
+    background-color: none;
+    color: #333333;
+    text-decoration: none;
+
+
+}
+
+
+.top small{ 
+    font-size: 0.6em;
+vertical-align: super;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    padding-top: 28px;
+    background-color: none;
+    color: #333333;
+    text-decoration: none;
+    text-transform: uppercase;
+
+}
+
+.top b { 
+    font-weight: 700;
+}
+
+
+
+.top h3{
+    font-size: 0.9em;
+    font-family: 'Lato', sans-serif;
+    font-weight:300;
+ 
+    line-height: 0.8em;
+    text-align: center;
+    color: #FF9700;
+    letter-spacing: 1px;
+/*    text-transform: uppercase;*/
+    padding-bottom: 39px ;
+    margin-bottom: 0px;
+ } 
+
+ .top hr {
+    margin-top: 0px;
+    margin-bottom: 1px;
+  border-top: 1px solid #e5e5e5;
+  width: 15%;
+                            
+}
+
+.page {
+    background-color: #02a8f3;
+    min-height: 714px;
+    padding: 30px 30px 30px 40px;  
+    margin-top: 0px;								
+}
+
+
+
+
+.bottom {
+    background-color:  #f7f7f7;
+/*    background-color:  #0d1e2a;*/
+    min-height: 60px;
+}
+
+
+
+#signature {
+text-align: center;
+color: #32a9db;
+font-family: 'Lat', sans-serif;
+font-weight: 400;
+padding-top: 17px;
+text-transform: uppercase;
+letter-spacing: 2px;
+font-size: 0.8em;
+text-decoration: none;
+}
+
+#signature :hover{
+font-weight:700;
+text-decoration: none;
+}
+
+.share a{
+    color: #02a8f3;
+    font-size: 1.5em;
+    text-align: center;
+
+}
+
+.share p{
+   text-align: center;
+    padding-top: 14px;
+
+}
+.share :hover {
+    color: #317b9b;
+    text-decoration: none;
+
+}
+
+
+
+
