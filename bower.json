@@ -1,0 +1,22 @@
+{
+  "name": "visualizedio",
+  "version": "0.0.0",
+  "homepage": "https://github.com/infogr8/visualizedio",
+  "authors": [
+    "JW Buitenhuis <jwbuitenhuis@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-rangeslider": "~0.0.10",
+    "angularjs": "~1.3.2",
+    "d3": "~3.4.13",
+    "underscore": "~1.7.0"
+  }
+}
