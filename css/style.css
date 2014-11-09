@@ -76,9 +76,17 @@ vertical-align: super;
 
 .page h4{
     font-family: 'Lato', sans-serif;
-color: #FFFFFF;
-                             
+    font-weight: 300;
+color: #FFFFFF;                            
 }
+
+.page h5{
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    color: #FFFFFF;                            
+}
+
 #speakers {
     text-align: right; 
 
