@@ -74,7 +74,20 @@ vertical-align: super;
     margin-top: 0px;								
 }
 
+.page h4{
+    font-family: 'Lato', sans-serif;
+color: #FFFFFF;
+                             
+}
+#speakers {
+    text-align: right; 
 
+}
+
+#filters {
+    text-align: left; 
+
+}
 
 
 .bottom {
@@ -88,7 +101,7 @@ vertical-align: super;
 #signature {
 text-align: center;
 color: #32a9db;
-font-family: 'Lat', sans-serif;
+font-family: 'Lato', sans-serif;
 font-weight: 400;
 padding-top: 17px;
 text-transform: uppercase;
