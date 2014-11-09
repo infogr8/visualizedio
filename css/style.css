@@ -76,8 +76,8 @@ vertical-align: super;
 
 .page h4{
     font-family: 'Lato', sans-serif;
-    font-weight: 300;
-    font-size: 1.5em;
+    font-weight: 400;
+    font-size: 1.4em;
 color: #FFFFFF;                            
 }
 
@@ -87,6 +87,12 @@ color: #FFFFFF;
     color: #FFFFFF;  
     font-size: 1em;
     letter-spacing: 0px;                          
+}
+ .page hr {
+
+  border-top: 1px solid #0176bc;
+
+                            
 }
 
 #speakers {
