@@ -14,8 +14,9 @@ var svg = d3.select("#chart").append("svg")
 
 
 var url = './twitter-proxy.php?url='+encodeURIComponent('search/tweets.json?q=visualizedio&src=typd');
+//url = 'mock.json';
 
-d3.json("mock.json", function(error, root) {
+d3.json(url, function(error, root) {
     var children = root.statuses.map(function(d) {
         // console.log('favorite_count:', d.favorite_count);
         // console.log('retweet_count:', d.retweet_count);
