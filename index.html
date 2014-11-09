@@ -75,22 +75,14 @@
 
 </div>
 
-
+<div id="tooltip" class="hidden-tooltip">
+    <strong>Title</strong>
+    <div>Retweets: <span class="retweet_count"></span></div>
+    <div>Favorites: <span class="favorite_count"></span></div>
+</div>
 
 <script src="js/jquery-1.11.1.min.js"></script>
-<script>
-
- 
-/*
- * Change to 
-*/
-$.getJSON('./twitter-proxy.php?url='+encodeURIComponent('search?q=visualizedio&src=typd'), function(d){
-        console.log(d);
-});
-// Some magic here
-
-</script>
-
-
+<script src="js/d3.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
