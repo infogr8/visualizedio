@@ -76,21 +76,36 @@ vertical-align: super;
 
 .page h4{
     font-family: 'Lato', sans-serif;
-    font-weight: 400;
-    font-size: 1.4em;
-color: #FFFFFF;                            
+    font-weight: 700;
+    font-size: 1.8em;
+color: #FFFFFF;   
+line-height: 1.3em;
+
+letter-spacing: 0px;                        
 }
 
 .page h5{
     font-family: 'Lato', sans-serif;
     font-weight: 300; 
-    color: #FFFFFF;  
+    color: #B2E4FB;  
     font-size: 1em;
+    line-height: 1.3em;
     letter-spacing: 0px;                          
 }
- .page hr {
+ #speakers hr {
 
-  border-top: 1px solid #0176bc;
+  border-top: 1px solid #FFFFFF;
+  width: 40%;
+  margin-right: 0
+
+                            
+}
+
+ #filters hr {
+
+  border-top: 1px solid #FFFFFF;
+  width: 40%;
+  margin-left: 0
 
                             
 }
