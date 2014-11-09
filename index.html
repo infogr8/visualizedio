@@ -77,7 +77,19 @@
 
 
 
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
 
+ 
+/*
+ * Change to 
+*/
+$.getJSON('./twitter-proxy.php?url='+encodeURIComponent('statuses/user_timeline.json?screen_name=MikeRogers0&count=2'), function(d){
+        console.log(d);
+});
+// Some magic here
+
+</script>
 
 
 </body>
