@@ -321,8 +321,38 @@ text {
 #tooltip p {
     margin: 0;
     font-family: sans-serif;
-    font-size: 16px;
     line-height: 20px;
 }
+
+#tooltip .user-name {
+    color:#28B5F5;
+    font-weight: 900;
+    font-size: 1em;
+}
+
+
+#tooltip strong{
+    color:#536D79;
+    font-weight: 300;
+    font-size: 0.9em;
+    padding-top: 10px;
+}
+
+#tooltip .created_at{
+    color:#36464E;
+    font-weight: 700;
+    font-size: 0.8em;
+text-transform: uppercase;
+text-align: right !important;
+}
+
+#tooltip #tweet{
+    padding-top: 7px;
+    padding-bottom: 7px;
+}
+#tooltip #date{
+    padding-top: 7px;
+}
+
 
 
