@@ -48,22 +48,20 @@
   position: relative;
   margin: 10px 0 30px;
   padding: 4px;
-  border: 1px solid #ccc;
-  background: #fff;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  background: none;
+  outline: none;
+  box-shadow: none;
+  -moz-border-radius: 12px; 
+  -webkit-border-radius: 12px; 
+  border-radius: 12px;
+  background-color: #029AE4;
+  padding: 5px;
   -webkit-transition: border linear, box-shadow linear;
   -webkit-transition-delay: 0.2s, 0.2s;
   -moz-transition: border linear 0.2s, box-shadow linear 0.2s;
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: #0187D0;
   /*------------------------------------*\
       RUNNER
   \*------------------------------------*/
@@ -102,12 +100,14 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
+  outline:none;
 }
 /* line 53, scss/_rangeSlider.scss */
 .ngrs-range-slider .ngrs-runner {
   position: relative;
   margin: 0 9px;
   height: 18px;
+  outline:none;
 }
 /* line 63, scss/_rangeSlider.scss */
 .ngrs-range-slider .ngrs-join {
@@ -116,19 +116,16 @@
   top: 50%;
   left: 0;
   right: 100%;
-  height: 8px;
+  height: 7px;
   margin: -4px 0 0 0;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  background-color: #2f96b4;
-  background-image: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #5bc0de), color-stop(100%, #2f96b4));
-  background-image: -webkit-linear-gradient(#5bc0de, #2f96b4);
-  background-image: -moz-linear-gradient(#5bc0de, #2f96b4);
-  background-image: -o-linear-gradient(#5bc0de, #2f96b4);
-  background-image: linear-gradient(#5bc0de, #2f96b4);
+  background-color: #4EC2F6;
+  outline:none;
+ 
 }
 /* line 81, scss/_rangeSlider.scss */
 .ngrs-range-slider .ngrs-handle {
@@ -137,13 +134,13 @@
   height: 100%;
   width: 18px;
   margin: 0 0 0 -9px;
-  background: #efefef;
-  border: 1px solid #ccc;
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  -ms-border-radius: 3px;
-  -o-border-radius: 3px;
-  border-radius: 3px;
+  background: #FFFFFF;
+  border: none;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px;
   /*------------------------------------*\
       HANDLE ICON
   \*------------------------------------*/
