@@ -39,42 +39,51 @@
   <!-- Site banner -->
   <div class="page" ng-controller="chartController">
     <div class="row">
-        <div class="col-md-2" id="speakers">  
+        <div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12 col-xs-12" id="speakers">  
             <h4> Speakers</h4>
             <h5>Filter the tweets related<br>to each of the speakers</h5>
             <hr>
   
-            <input id="one" name="one" type="button" value="Maral Pourkazemi" class="btn btn-xs speakers">
-            <input id="two" name="two" type="button" value="Valentina D'Efilippo" class="btn btn-xs speakers">
-            <input id="three" name="three" type="button" value="Surprise Guest" class="btn btn-xs speakers">
-            <input id="four" name="four" type="button" value="M. da Gandra & M. Van Neck" class="btn btn-xs speakers">
-            <input id="five" name="five" type="button" value="William Rowe" class="btn btn-xs speakers">
-            <input id="six" name="six" type="button" value="Pierre la Baume" class="btn btn-xs speakers">
-            <input id="seven" name="seven" type="button" value="Kate McLean" class="btn btn-xs speakers">
-            <input id="eight" name="eight" type="button" value="Kim Albrecht" class="btn btn-xs speakers">
-            <input id="nine" name="nine" type="button" value="Bronwen Robertson" class="btn btn-xs speakers">
-            <input id="eleven" name="elenven" type="button" value="Stefanie Posavec" class="btn btn-xs speakers">
-            <input id="twelve" name="twelve" type="button" value="Pascal Raabe" class="btn btn-xs speakers">
-            <input id="thirteen" name="thirteen" type="button" value="Andreas Koller" class="btn btn-xs speakers">
-            <input id="fourteen" name="fourteen" type="button" value="Andy Kirk" class="btn btn-xs speakers">
-            <input id="fifteen" name="fifteen" type="button" value="Marcin Ignac" class="btn btn-xs speakers">
-            <input id="sixteen" name="sixteen" type="button" value="Pau Garcia & Dani Pearson" class="btn btn-xs speakers">
-            <input id="seventeen" name="seventeen" type="button" value="Peter Crnokrak" class="btn btn-xs speakers">
+            <button class="btn btn-xs speakers">Maral Pourkazemi</button>
+            <button class="btn btn-xs speakers">Valentina D'Efilippo</button>
+            <button class="btn btn-xs speakers">Surprise Guest</button>
+            <button class="btn btn-xs speakers">M. da Gandra & M. Van Neck</button>
+            <button class="btn btn-xs speakers">William Rowe</button>
+            <button class="btn btn-xs speakers">Pierre la Baume</button>
+            <button class="btn btn-xs speakers">Kate McLean</button>
+            <button class="btn btn-xs speakers">Kim Albrecht</button>
+            <button class="btn btn-xs speakers">Bronwen Robertson</button>
+            <button class="btn btn-xs speakers">Pascal Raabe</button>
+            <button class="btn btn-xs speakers">Andreas Koller</button> 
+            <button class="btn btn-xs speakers">Andy Kirk</button> 
+            <button class="btn btn-xs speakers">Marcin Ignac</button>    
+            <button class="btn btn-xs speakers">Pau Garcia & Dani Pearson</button>    
+            <button class="btn btn-xs speakers">Peter Crnokrak</button>            
               <hr>
-              <input id="eighteen" name="eighteen" type="button" align="right" value="All the Speakers" class="btn btn-xs all">
+              <button class="btn btn-xs all">All the Speakers</button> 
               <hr>
         </div>
        
-        <div class="col-md-8" id="chart">  
+        <div class=" col-lg-6 col-md-6 col-sm-12 col-xs-12" id="chart">  
+        
+
         </div>
-        <div class="col-md-2" id="filters">  
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" id="filters">  
+            <div>
             <h4> Bubbles</h4>
             <h5>Resize depending<br>on the properties<br>of each tweet</h5>
-            <hr>            
+            <hr>
+            </div>
+              <button class="btn btn-lg filters">retweets</button> 
+              <button class="btn btn-xs filters">favourites</button> 
+              <button class="btn btn-xs filters">followers</button> 
+
+
+
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-6 col-md-offset-3">
             <div range-slider min="0" max="100" model-min="slider.min" model-max="slider.max"></div>
         </div>
     </div>
@@ -106,7 +115,7 @@
 </div>
 
 <div id="tooltip" class="hidden-tooltip">
-    <img><span class="user-name"></span>
+    <img><span class="user-name"></span><br>
     <strong>Title</strong>
     <div>Created at:
         <span class="created_at"></span>
