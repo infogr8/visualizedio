@@ -179,12 +179,12 @@ app.factory('bubbleChart', function() {
                     return '#0176BC';
                 });
 
-                d3.select("#tooltip")
-                    .transition().duration(0)
-                    .style('display', 'none')
-                    .style("opacity", 0)
-                //.style('top', 0)
-                .select('img').attr('src', '');
+                // d3.select("#tooltip")
+                //     .transition().duration(0)
+                //     .style('display', 'none')
+                //     .style("opacity", 0)
+                // //.style('top', 0)
+                // .select('img').attr('src', '');
             });
 
         function tick(e) {
