@@ -112,6 +112,7 @@ app.factory('bubbleChart', function() {
     d3.select(window).on('resize', render);
 
     function render() {
+        console.log('wdith', d3.select('#chart').style('width').replace(/px$/, ''));
         var width = parseFloat(d3.select('#chart').style('width').replace(/px$/, '')),
             height = Math.min(500, width);
 
@@ -149,28 +150,23 @@ app.factory('bubbleChart', function() {
         }
 
         var svg = d3.select("#chart svg");
-        if (svg[0][0] === null) {
+        if (svg[0][0] !== null) {
+            svg.remove();
+        }
             var svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
-        } else {
-            svg = d3.select('#chart svg').select('svg')
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom);
-
-//            force.resume();
-        }
+        // } else {
+        //     svg = d3.select('#chart svg')
+        //         .attr("width", width + margin.left + margin.right)
+        //         .attr("height", height + margin.top + margin.bottom);
+        // }
 
 
         var circle = updateData(nodes, drag);
 
         circle
-            .on("mouseover", function(d) {
-                d3.select(this).
-                style('fill', function(d) {
-                    return '#FFD44E';
-                });
-
+            .on('click', function (d) {
                 //console.log('mouseover');
                 var tooltip = d3.select("#tooltip")
                     .transition()
@@ -187,6 +183,14 @@ app.factory('bubbleChart', function() {
                 tooltip.select('.created_at').text(d.created_at);
                 tooltip.select('.user-name').text(d.user.name);
                 tooltip.select('img').attr('src', d.user.profile_image_url);
+                
+            })
+            .on("mouseover", function(d) {
+                d3.select(this).
+                style('fill', function(d) {
+                    return '#FFD44E';
+                });
+
 
             })
             .on("mouseout", function() {
