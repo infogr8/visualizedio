@@ -5,6 +5,9 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         max: 100
     };
 
+    $scope.all = function () {
+        bubbleChart.render();
+    };
 
     $scope.$watch('slider.min', function() {
         if (bubbleChart.ready()) {

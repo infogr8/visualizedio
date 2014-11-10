@@ -11,7 +11,14 @@ app.factory('bubbleChart', function() {
             result_type: 'recent',
             count: 300
         }),
-        statuses;
+        drag,
+        statuses,
+        margin = {
+            top: 0,
+            right: 0,
+            bottom: 0,
+            left: 0
+        };
 
     url = 'mock.json';
 
@@ -74,23 +81,9 @@ app.factory('bubbleChart', function() {
         render();
     });
 
-    function render() {
-
-        var margin = {
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0
-            },
-            width = parseFloat(d3.select('#chart').style('width').replace(/px$/, '')),
-            height = Math.min(500, width);
-
-        var children = statuses;
-
-        var n = children.length,
-            x = d3.scale.ordinal().domain(d3.range(m)).rangePoints([0, width], 1);
-
-        var nodes = _.map(children, function(item, index) {
+    function selectNodes (children, width, height) {
+        var x = d3.scale.ordinal().domain(d3.range(m)).rangePoints([0, width], 1);
+        return _.map(children, function(item, index) {
             var i = Math.floor(Math.random() * m);
 
             item.value = weighTweet(item);
@@ -99,6 +92,33 @@ app.factory('bubbleChart', function() {
             item.cy = height / 2;
             return item;
         });
+    }
+
+    function updateData(nodes) {
+        var svg = d3.select("#chart svg");
+
+        return svg.selectAll("circle")
+            .data(nodes)
+            .enter().append("circle")
+            .attr("r", function(d) {
+                return d.radius;
+            })
+            .style("fill", function(d, i) {
+                return "#0176BC";
+            })
+            .call(drag);
+    }
+
+    d3.select(window).on('resize', render);
+
+    function render() {
+        var width = parseFloat(d3.select('#chart').style('width').replace(/px$/, '')),
+            height = Math.min(500, width);
+
+        var children = statuses;
+
+        var n = children.length,
+            nodes = selectNodes(children, width, height);
 
         var force = d3.layout.force()
             .nodes(nodes)
@@ -108,12 +128,11 @@ app.factory('bubbleChart', function() {
             .on("tick", tick)
             .start();
 
-        var drag = force.drag()
-            .on("drag", dragmove);
+        drag = force.drag().on("drag", dragmove);
 
-        var tooltip = d3.select("body").append("div")
-            .attr("class", "tooltip")
-            .style("opacity", 0);
+        // var tooltip = d3.select("body").append("div")
+        //     .attr("class", "tooltip")
+        //     .style("opacity", 0);
 
         function dragmove(d) {
             var euclideanDistance = Math.sqrt(Math.pow((d.px - 198), 2) + Math.pow((d.py - 198), 2));
@@ -129,23 +148,21 @@ app.factory('bubbleChart', function() {
             }
         }
 
-        var svg = d3.select("#chart").append("svg")
-            .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom)
-            .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        var svg = d3.select("#chart svg");
+        if (svg[0][0] === null) {
+            var svg = d3.select("#chart").append("svg")
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
+        } else {
+            svg = d3.select('#chart svg').select('svg')
+                .attr("width", width + margin.left + margin.right)
+                .attr("height", height + margin.top + margin.bottom);
 
-        var circle = svg.selectAll("circle")
-            .data(nodes)
-            .enter().append("circle")
-            .attr("r", function(d) {
-                return d.radius;
-            })
-            .style("fill", function(d, i) {
-                return "#0176BC";
-            })
-            .call(drag);
+//            force.resume();
+        }
 
+
+        var circle = updateData(nodes, drag);
 
         circle
             .on("mouseover", function(d) {
@@ -179,6 +196,7 @@ app.factory('bubbleChart', function() {
                     return '#0176BC';
                 });
 
+                // uncomment this to hide the tooltip when leaving
                 // d3.select("#tooltip")
                 //     .transition().duration(0)
                 //     .style('display', 'none')
@@ -201,8 +219,9 @@ app.factory('bubbleChart', function() {
 
     return {
         render: render,
+        updateData: updateData,
         ready: function() {
-            return !!statuses;
+            return statuses !== undefined;
         }
     };
 });
