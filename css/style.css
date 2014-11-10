@@ -3,20 +3,20 @@
 
 
 .top {
-    background-color:  #f7f7f7;
+    background-color:  #28B5F5;
     font-family: 'Lato', sans-serif;
     min-height: 120px;
-    border-top: 2px solid #35a9dc;
+    border-top: 3px solid #0176BC;
 }
 
 .top h1{
-    font-size: 2.1em;
+    font-size: 2.8em;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     text-align: center;
-    padding-top: 18px;
+    padding-top: 13px;
     background-color: none;
-    color: #333333;
+    color: #FFFFFF;
     text-decoration: none;
 
 
@@ -31,7 +31,7 @@ vertical-align: super;
     text-align: center;
     padding-top: 28px;
     background-color: none;
-    color: #333333;
+    color: #FFFFFF;
     text-decoration: none;
     text-transform: uppercase;
 
@@ -50,7 +50,7 @@ vertical-align: super;
  
     line-height: 0.8em;
     text-align: center;
-    color: #F16621;
+    color: #FFFFFF;
     letter-spacing: 1px;
 /*    text-transform: uppercase;*/
     padding-bottom: 39px ;
@@ -60,8 +60,8 @@ vertical-align: super;
  .top hr {
     margin-top: 0px;
     margin-bottom: 1px;
-  border-top: 1px solid #AFBDC4;
-  width: 15%;
+  border-top: 1px solid #0176BC;
+  width: 20%;
                             
 }
 
@@ -137,7 +137,7 @@ text-align: center;
 color: #28B5F5;
 font-family: 'Lato', sans-serif;
 font-weight: 700;
-padding-top: 17px;
+padding-top: 14px;
 text-transform: uppercase;
 letter-spacing: 2px;
 font-size: 0.8em;
@@ -362,37 +362,4 @@ text-align: right !important;
 }
 #tooltip #date{
     padding-top: 7px;
-}
-
-
-/* slider */
-
-input[type=range]{
-    -webkit-appearance: none;
-}
-
-input[type=range]::-webkit-slider-runnable-track {
-    width: 300px;
-    height: 5px;
-    background: #ddd;
-    border: none;
-    border-radius: 3px;
-}
-
-input[type=range]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    border: none;
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: goldenrod;
-    margin-top: -4px;
-}
-
-input[type=range]:focus {
-    outline: none;
-}
-
-input[type=range]:focus::-webkit-slider-runnable-track {
-    background: #ccc;
 }
