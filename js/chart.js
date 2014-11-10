@@ -142,7 +142,7 @@ app.factory('bubbleChart', function() {
                 return d.radius;
             })
             .style("fill", function(d, i) {
-                return "white";
+                return "#0176BC";
             })
             .call(drag);
 
@@ -151,7 +151,7 @@ app.factory('bubbleChart', function() {
             .on("mouseover", function(d) {
                 d3.select(this).
                 style('fill', function(d) {
-                    return 'yellow';
+                    return '#FFD44E';
                 });
 
                 //console.log('mouseover');
@@ -176,7 +176,7 @@ app.factory('bubbleChart', function() {
                 //console.log('mouseout');
                 d3.select(this).
                 style('fill', function(d) {
-                    return 'white';
+                    return '#0176BC';
                 });
 
                 d3.select("#tooltip")
