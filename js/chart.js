@@ -173,7 +173,7 @@ app.factory('bubbleChart', function() {
                     .delay(100)
                     .duration(500)
                     .style('display', 'block')
-                    .style("opacity", 0.9)
+                    .style("opacity", 1)
                     .style("left", (d.x + 20) + "px")
                     .style("top", (d.y - 50) + "px");
 

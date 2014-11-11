@@ -416,6 +416,7 @@ text {
     fill: white;
 }
 #tooltip {
+    opacity: 1;
     font-family: 'Lato', sans-serif;
     position: absolute;
     width: 20em;
