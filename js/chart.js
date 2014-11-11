@@ -104,7 +104,7 @@ app.factory('bubbleChart', function() {
                 return d.radius;
             })
             .style("fill", function(d, i) {
-                return "#0176BC";
+                return "#0187D0";
             })
             .call(drag);
     }
@@ -197,7 +197,7 @@ app.factory('bubbleChart', function() {
                 //console.log('mouseout');
                 d3.select(this).
                 style('fill', function(d) {
-                    return '#0176BC';
+                    return '#0187D0';
                 });
 
                 // uncomment this to hide the tooltip when leaving
