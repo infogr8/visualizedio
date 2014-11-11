@@ -50,7 +50,6 @@
   padding: 4px;
   background: none;
   outline: none;
-  box-shadow: none;
   -moz-border-radius: 12px; 
   -webkit-border-radius: 12px; 
   border-radius: 12px;
@@ -62,6 +61,10 @@
   -o-transition: border linear 0.2s, box-shadow linear 0.2s;
   transition: border linear 0.2s, box-shadow linear 0.2s;
   -webkit-tap-highlight-color: #0187D0;
+
+      -webkit-box-shadow: 0px 2px 0px #0187D0;
+    -moz-box-shadow: 0px 2px 0px #0187D0;
+    box-shadow: 0px 2px 0px #0187D0;
   /*------------------------------------*\
       RUNNER
   \*------------------------------------*/
@@ -141,10 +144,15 @@
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
   border-radius: 8px;
+      -webkit-box-shadow: 0px 2px 0px #0187D0;
+    -moz-box-shadow: 0px 2px 0px #0187D0;
+    box-shadow: 0px 2px 0px #0187D0;
   /*------------------------------------*\
       HANDLE ICON
   \*------------------------------------*/
 }
+
+
 /* line 95, scss/_rangeSlider.scss */
 .ngrs-range-slider .ngrs-handle i {
   display: block;
@@ -154,16 +162,27 @@
   cursor: pointer;
 }
 /* line 104, scss/_rangeSlider.scss */
-.ngrs-range-slider .ngrs-handle.ngrs-over i {
+/*.ngrs-range-slider .ngrs-handle.ngrs-over i {
+  background-position: 50% 50%;
+}*/
+.ngrs-range-slider .ngrs-handle i {
   background-position: 50% 50%;
 }
+
 /* line 109, scss/_rangeSlider.scss */
+
 .ngrs-range-slider .ngrs-handle.ngrs-down {
-  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+     -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
 }
 /* line 120, scss/_rangeSlider.scss */
+
+.ngrs-range-slider .ngrs-handle-min i {
+background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRF…AkQFqJDZwAYjPAPE/dAU/gHg/ED/GpgvkTW50QYAAAwADfwrM5sqplgAAAABJRU5ErkJggg==");
+}
+
 .ngrs-range-slider .ngrs-handle-min i {
   background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFNJREFUeNpiYMAEXEDsA+OwoEnKALETEHOgK2AEYhMgNkQ3DqSAB6pLAot1DExIJmAFzED8C4hvQdnIppyFKYCBp0D8CohloVafxWUqN7I3AQIMAKw6B24pOi8lAAAAAElFTkSuQmCC");
 }
@@ -321,11 +340,14 @@
   text-align: right;
 }
 /* line 316, scss/_rangeSlider.scss */
+
+
+
 .ngrs-range-slider.ngrs-focus {
   border-color: rgba(82, 168, 236, 0.8);
-  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
-  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(82, 168, 236, 0.6);
+     -webkit-box-shadow: 0px 2px 0px #0187D0;
+    -moz-box-shadow: 0px 2px 0px #0187D0;
+    box-shadow: 0px 2px 0px #0187D0;
 }
 /* line 327, scss/_rangeSlider.scss */
 .ngrs-range-slider.ngrs-disabled, .ngrs-range-slider.ngrs-disabled.ngrs-focus {
@@ -360,3 +382,4 @@
 body.ngrs-touching {
   -ms-touch-action: none;
 }
+

@@ -68,7 +68,7 @@ vertical-align: super;
 
 .page {
     background-color: #28B5F5;
-    min-height: 697px;
+    min-height: 685px;
     padding: 30px 30px 30px 40px;  
     margin-top: 0px;								
 }
@@ -171,7 +171,7 @@ text-decoration: none;
 
 .share p{
    text-align: center;
-    padding-top: 14px;
+    padding-top: 12px;
 
 }
 .share :hover {
@@ -311,6 +311,61 @@ box-shadow: none;
     border:none;
 }
 
+/* timebottons */
+
+
+
+.timeframe {
+    float: center;
+    outline:none !important;
+    font-weight: 400;
+    color: #014880;
+    background-color: #029AE4;
+    margin-top: 10px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    padding-left: 7px;
+    padding-right: 7px;
+    -moz-border-radius: 11px; 
+    -webkit-border-radius: 11px; 
+        border-radius: 11px;
+    font-family: 'Lato', sans-serif;
+    font-size: 0.75em;
+    -webkit-box-shadow: 0px 2px 0px #0187D0;
+    -moz-box-shadow: 0px 2px 0px #0187D0;
+    box-shadow: 0px 2px 0px #0187D0;
+    text-align: center!important;
+    border:none;
+}
+
+#timeleft {
+    float: right !important;
+}
+
+#timeright {
+    float: left !important;
+}
+
+
+
+.timeframe:hover {
+        outline:none !important;
+
+    color: #029AE4;
+    font-weight: 400;
+    background-color: #FFFFFF;
+        border:none;
+}
+.timeframe:active {
+    outline:none !important;
+/*    color: #00569A;*/
+    background-color: #FFFFFF;
+    box-shadow: none;
+    border:none;
+}
+
+
+
 /* tooltips over the circles */
 text {
     font-family: sans-serif;
@@ -328,7 +383,7 @@ text {
     -moz-border-radius: 10px;
     border-radius: 10px;
     -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
-    -mox-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
     box-shadow: 4px 4px 10px rbga(0, 0, 0, 0.4) pointer-events: none;
 }
 #tooltip.hidden-tooltip {
