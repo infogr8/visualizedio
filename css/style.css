@@ -99,7 +99,6 @@ letter-spacing: 0px;
 
   border-top: 1px solid #FFFFFF;
   width: 30%;
-  margin-left: 0;
 
                             
 }
@@ -108,7 +107,6 @@ letter-spacing: 0px;
 
   border-top: 1px solid #FFFFFF;
   width: 30%;
-  margin-right: 0
 
                             
 }
@@ -121,6 +119,7 @@ letter-spacing: 0px;
 
 #filters {
     text-align: right; 
+    margin-bottom: 20px;
 }
 
 
@@ -130,7 +129,6 @@ letter-spacing: 0px;
 /*    background-color:  #0d1e2a;*/
     min-height: 60px;
     border-top: 4px solid #029AE4;
-    border-bottom: 1px solid #029AE4;
 
 }
 
@@ -220,6 +218,7 @@ text-decoration: none;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
+    margin-bottom: 20px;
 }
 
 .speakers:focus{ 
@@ -314,14 +313,13 @@ box-shadow: none;
 /* timebottons */
 
 
-
 .timeframe {
-    float: center;
     outline:none !important;
     font-weight: 400;
     color: #014880;
     background-color: #029AE4;
-    margin-top: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
     padding-top: 6px;
     padding-bottom: 6px;
     padding-left: 7px;
@@ -338,6 +336,45 @@ box-shadow: none;
     border:none;
 }
 
+@media only screen and (max-width : 992px) {
+
+   #timeleft {
+   min-width: 100%;
+   margin-top: 20px; 
+}
+
+#timeright {
+   min-width: 100%;
+      margin-bottom: 20px; 
+}
+
+#filters {
+    text-align: center; 
+   min-width: 100%;
+}
+
+#speakers {
+    text-align: center; 
+   min-width: 100%;
+}
+
+}
+
+@media only screen and (min-width : 992px) {
+
+#speakers hr{
+  margin-left: 0;
+}
+
+#filters hr{
+  margin-right: 0;
+}
+
+}
+
+
+
+
 #timeleft {
     float: right !important;
 }
@@ -345,6 +382,12 @@ box-shadow: none;
 #timeright {
     float: left !important;
 }
+
+
+
+
+
+
 
 
 
