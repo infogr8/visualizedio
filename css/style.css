@@ -417,7 +417,7 @@ text {
 }
 #tooltip {
     font-family: 'Lato', sans-serif;
-    position: absolute;
+    position: static;
     width: 20em;
     height: auto;
     padding: 10px;

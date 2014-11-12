@@ -166,7 +166,41 @@ app.factory('bubbleChart', function() {
         var circle = updateData(nodes, drag);
 
         circle
-            .on('click', function (d) {
+            // to go back uncomment and delete from line 204 to 219
+            //.on('click', function (d) {
+              //  d3.select(this).
+                
+                //style('fill', function(d) {
+                  //  return '#FFD44E';
+               // });
+
+                //console.log('mouseover');
+                //var tooltip = d3.select("#tooltip")
+                  //  .transition()
+                   // .delay(100)
+                //    .duration(500)
+                  //  .style('display', 'block')
+                  //  .style("opacity", 1)
+                //    .style("left", (d.x + 20) + "px")
+                //    .style("top", (d.y - 50) + "px");
+
+             //   tooltip.select("strong").text(d.text);
+             //   tooltip.select(".retweet_count").text(d.retweet_count);
+            //    tooltip.select(".favorite_count").text(d.favorite_count);
+             //   tooltip.select('.created_at').text(d.created_at);
+             //   tooltip.select('.user-name').text(d.user.name);
+            //    tooltip.select('img').attr('src', d.user.profile_image_url);
+                
+           // })
+            
+
+
+            .on("mouseover", function(d) {
+                d3.select(this).
+                style('fill', function(d) {
+                    return '#FFD44E';
+                });
+
                 //console.log('mouseover');
                 var tooltip = d3.select("#tooltip")
                     .transition()
@@ -175,7 +209,7 @@ app.factory('bubbleChart', function() {
                     .style('display', 'block')
                     .style("opacity", 1)
                     .style("left", (d.x + 20) + "px")
-                    .style("top", (d.y - 50) + "px");
+                    .style("top", (d.y - 20) + "px");
 
                 tooltip.select("strong").text(d.text);
                 tooltip.select(".retweet_count").text(d.retweet_count);
@@ -184,13 +218,8 @@ app.factory('bubbleChart', function() {
                 tooltip.select('.user-name').text(d.user.name);
                 tooltip.select('img').attr('src', d.user.profile_image_url);
                 
-            })
-            .on("mouseover", function(d) {
-                d3.select(this).
-                style('fill', function(d) {
-                    return '#FFD44E';
-                });
-
+            
+//FFD44E
 
             })
             .on("mouseout", function() {
@@ -199,14 +228,15 @@ app.factory('bubbleChart', function() {
                 style('fill', function(d) {
                     return '#0187D0';
                 });
-
+//#0187D0
                 // uncomment this to hide the tooltip when leaving
-                // d3.select("#tooltip")
-                //     .transition().duration(0)
-                //     .style('display', 'none')
-                //     .style("opacity", 0)
-                // //.style('top', 0)
-                // .select('img').attr('src', '');
+                 d3.select("#tooltip")
+                     .transition().duration(0)
+                        .delay(300)
+                     .style('display', 'none')
+                     .style("opacity", 0)
+                .style('top', 0)
+                 .select('img').attr('src', '');
             });
 
         function tick(e) {
