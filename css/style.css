@@ -9,7 +9,7 @@ border-bottom: 4px solid #029AE4;
 }
 
 .top h1{
-    font-size: 4em;
+    font-size: 3em;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     text-align: center;
@@ -364,6 +364,14 @@ margin-bottom: 10px;
    min-width: 100%;
 }
 
+#tooltip {
+    font-family: 'Lato', sans-serif;
+    position: static;
+    width: 12em!important;
+
+}
+
+
 }
 
 @media only screen and (min-width : 992px) {
@@ -398,8 +406,7 @@ margin-bottom: 10px;
 
 
 .timeframe:hover {
-        outline:none !important;
-
+    outline:none !important;
     color: #029AE4;
     font-weight: 400;
     background-color: #FFFFFF;
@@ -407,7 +414,6 @@ margin-bottom: 10px;
 }
 .timeframe:active {
     outline:none !important;
-/*    color: #00569A;*/
     background-color: #FFFFFF;
     box-shadow: none;
     border:none;
@@ -424,7 +430,7 @@ text {
 #tooltip {
     font-family: 'Lato', sans-serif;
     position: static;
-    width: 20em;
+    width: 32em;
     height: auto;
     padding: 10px;
     position:absolute;
@@ -457,14 +463,14 @@ text {
 
 #tooltip strong{
     color:#536D79;
-    font-weight: 300;
+    font-weight: 400;
     font-size: 0.9em;
-    padding-top: 10px;
+    padding-top: 8px;
 }
 
 #tooltip .created_at{
-    color:#36464E;
-    font-weight: 700;
+    color:#ADADAD;
+    font-weight: 400;
     font-size: 0.8em;
 text-transform: uppercase;
 text-align: right !important;
@@ -474,8 +480,11 @@ text-align: right !important;
     padding-top: 7px;
     padding-bottom: 7px;
 }
-#tooltip #date{
-    padding-top: 7px;
+
+ .counts{
+    font-size: 0.8em;
+    color: #ADADAD;
+    font-weight: 300;
 }
 
 
