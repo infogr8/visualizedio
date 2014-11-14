@@ -99,7 +99,7 @@ app.factory('bubbleChart', function() {
                 return d.radius;
             })
             .style("fill", function(d, i) {
-                return "#0187D0";
+                return "#0288d1";
             })
             .call(drag);
     }
@@ -239,7 +239,7 @@ app.factory('bubbleChart', function() {
                 d3.select(this).
                     transition().
                     style('fill', function(d) {
-                        return '#0187D0';
+                        return '#0288d1';
                     });
             //#0187D0
 
