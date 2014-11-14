@@ -163,6 +163,11 @@ app.factory('bubbleChart', function() {
 
         circle
             .on("mouseover", function(d) {
+                var width = $('#tooltip').width(),
+                    left = d3.event.pageX + width + 30 > $(window).width() ?
+                        d3.event.pageX - width - 30 :
+                        d3.event.pageX + 30;
+
                 d3.select(this).
                     transition().
                     style('fill', function(d) {
@@ -173,8 +178,8 @@ app.factory('bubbleChart', function() {
                     .transition()
                     .duration(300)
                     .style("opacity", 1)
-                    .style("left", (d3.event.pageX + 30) + "px")
-                    .style("top", (d3.event.pageY - 28) + "px");
+                    .style("top", (d3.event.pageY - 28) + "px")
+                    .style("left", left + "px");
 
                 tooltip.select("strong").text(d.text);
                 tooltip.select(".retweet_count").text(d.retweet_count);
