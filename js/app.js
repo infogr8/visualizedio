@@ -14,7 +14,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         return './twitter-proxy.php?url=' + encodeURIComponent('search/tweets.json?' + queryString);
     }
 
-    var statuses, 
+    var statuses,
         url = getUrl({
             q: 'visualizedio',
             result_type: 'recent',

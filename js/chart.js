@@ -119,6 +119,11 @@ app.factory('bubbleChart', function() {
 
     }
 
+    function parseDate(date) {
+        var replaced = date.replace(/^\w{3} /, '');
+        return moment(replaced, 'MMMM DD HH:mm:SS Z YYYY');
+    }
+
     function render(statuses) {
         var width = parseFloat(d3.select('#chart').style('width').replace(/px$/, '')),
             height = width;
@@ -166,7 +171,8 @@ app.factory('bubbleChart', function() {
                 var width = $('#tooltip').width(),
                     left = d3.event.pageX + width + 30 > $(window).width() ?
                         d3.event.pageX - width - 30 :
-                        d3.event.pageX + 30;
+                        d3.event.pageX + 30,
+                    created_at = parseDate(d.created_at).format('MMMM DD YYYY, h:mm:ss a');
 
                 d3.select(this).
                     transition().
@@ -184,7 +190,7 @@ app.factory('bubbleChart', function() {
                 tooltip.select("strong").text(d.text);
                 tooltip.select(".retweet_count").text(d.retweet_count);
                 tooltip.select(".favorite_count").text(d.favorite_count);
-                tooltip.select('.created_at').text(d.created_at);
+                tooltip.select('.created_at').text(created_at);
                 tooltip.select('.user-name').text(d.user.name);
                 tooltip.select('img').attr('src', d.user.profile_image_url);
             })
