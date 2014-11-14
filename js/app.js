@@ -35,7 +35,13 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         });
         $scope.$digest();
         bubbleChart.render(statuses);
+
+        d3.select(window).on('resize', function () {
+            bubbleChart.render(statuses);
+        });
     });
+
+
 
     $scope.speakers = [
         // 'Maral Pourkazemi',

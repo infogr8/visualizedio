@@ -104,8 +104,6 @@ app.factory('bubbleChart', function() {
             .call(drag);
     }
 
-    d3.select(window).on('resize', render);
-
     // abuse the pack layout to calculate the radii
     function abuseBubble (children, width, height) {
         var data = _.map(children, function (d, i) {
