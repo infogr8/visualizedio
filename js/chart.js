@@ -77,15 +77,6 @@ app.factory('bubbleChart', function() {
             return item;
         });
 
-        // var totalArea = _.reduce(nodes, function (memo, d) {
-        //     return memo + 2 * Math.PI * d.radius * d.radius;
-        // }, 0);
-        // var availableArea = width * height;
-        // var factor = availableArea / totalArea;
-
-        // _.each(nodes, function (d) {
-        //     d.radius = d.radius * 4;
-        // })
         return nodes;
     }
 
@@ -146,10 +137,6 @@ app.factory('bubbleChart', function() {
 
         drag = force.drag().on("drag", dragmove);
 
-        // var tooltip = d3.select("body").append("div")
-        //     .attr("class", "tooltip")
-        //     .style("opacity", 0);
-
         function dragmove(d) {
             var euclideanDistance = Math.sqrt(Math.pow((d.px - 198), 2) + Math.pow((d.py - 198), 2));
 
@@ -169,46 +156,12 @@ app.factory('bubbleChart', function() {
             svg = d3.select("#chart").append("svg")
                 .attr("width", width + margin.left + margin.right)
                 .attr("height", height + margin.top + margin.bottom);
-        // } else {
-        //     svg = d3.select('#chart svg')
-        //         .attr("width", width + margin.left + margin.right)
-        //         .attr("height", height + margin.top + margin.bottom);
-        // }
 
 
         var circle = updateData(nodes, drag);
         var tooltip = d3.select("#tooltip");
 
         circle
-            // to go back uncomment and delete from line 204 to 219
-            //.on('click', function (d) {
-              //  d3.select(this).
-                
-                //style('fill', function(d) {
-                  //  return '#FFD44E';
-               // });
-
-                //console.log('mouseover');
-                //var tooltip = d3.select("#tooltip")
-                  //  .transition()
-                   // .delay(100)
-                //    .duration(500)
-                  //  .style('display', 'block')
-                  //  .style("opacity", 1)
-                //    .style("left", (d.x + 20) + "px")
-                //    .style("top", (d.y - 50) + "px");
-
-             //   tooltip.select("strong").text(d.text);
-             //   tooltip.select(".retweet_count").text(d.retweet_count);
-            //    tooltip.select(".favorite_count").text(d.favorite_count);
-             //   tooltip.select('.created_at').text(d.created_at);
-             //   tooltip.select('.user-name').text(d.user.name);
-            //    tooltip.select('img').attr('src', d.user.profile_image_url);
-                
-           // })
-            
-
-
             .on("mouseover", function(d) {
                 d3.select(this).
                     transition().
@@ -219,7 +172,6 @@ app.factory('bubbleChart', function() {
                 tooltip
                     .transition()
                     .duration(300)
-                 //   .style('display', 'block')
                     .style("opacity", 1)
                     .style("left", (d3.event.pageX + 30) + "px")
                     .style("top", (d3.event.pageY - 28) + "px");
@@ -230,8 +182,6 @@ app.factory('bubbleChart', function() {
                 tooltip.select('.created_at').text(d.created_at);
                 tooltip.select('.user-name').text(d.user.name);
                 tooltip.select('img').attr('src', d.user.profile_image_url);
-                
-            //FFD44E
             })
             .on("mouseout", function() {
                 d3.select(this).
@@ -239,15 +189,11 @@ app.factory('bubbleChart', function() {
                     style('fill', function(d) {
                         return '#0288d1';
                     });
-            //#0187D0
 
-            //    uncomment this to hide the tooltip when leaving
                 tooltip
                     .transition().duration(0)
                     .delay(300)
                     .style("opacity", 0)
-                    //.style('top', 0)
-//                    .select('img').attr('src', '');
             });
 
         function tick(e) {
