@@ -13,8 +13,8 @@ app.factory('bubbleChart', function() {
         timeScale,
         savedStatuses,
         color = {
-            active: "#0288d1",
-            inactive: 'gray',
+            active: "#e1f5fe",
+            inactive: '#42bef6',
             hover: '#FFD44E'
         },
         drag;
@@ -257,7 +257,7 @@ app.factory('bubbleChart', function() {
                     tooltip.select('a.reply_link').attr('href', 'https://twitter.com/intent/tweet?in_reply_to=' + d.id_str);
                     tooltip.select('a.retweet_link').attr('href', 'https://twitter.com/intent/retweet?tweet_id=' + d.id_str);
                     tooltip.select('a.favourite_link').attr('href', 'https://twitter.com/intent/favorite?tweet_id=' + d.id_str);
-                    tooltip.select('a.user_link').attr('href', ' https://twitter.com/intent/user?user_id=' + d.user.id);
+                    tooltip.select('a.user_link').attr('href', 'https://twitter.com/intent/user?user_id=' + d.user.id);
                 }
             })
             .on("mouseout", function() {
