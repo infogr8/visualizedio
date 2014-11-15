@@ -98,6 +98,10 @@ app.factory('bubbleChart', function(urlReplacer) {
 
     // distance from center, plus one
     function weighTweet(d) {
+        if (weight === 'followers') {
+            return 1 + d.user.followers_count;
+        }
+
         if (weight === 'favorite') {
             return 1 + d.favorite_count;
         }

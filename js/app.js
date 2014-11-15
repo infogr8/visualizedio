@@ -50,7 +50,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
             return key + '=' + value;
         }).join('&');
 
-        return './twitter-proxy.php?url=' + encodeURIComponent('search/tweets.json?' + queryString);
+        return './proxy.php?url=' + encodeURIComponent('search/tweets.json?' + queryString);
     }
 
     var statuses,
@@ -59,16 +59,21 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
             count: 100
         });
 
-    //url = 'mock.json';
-
     function countKeywords (statuses) {
         var counter = {};
 
         statuses.map(function (d) {
-            d.text.match(/\w{5,}/ig).map(function (keyword) {
-                counter[keyword] = counter[keyword] || 0;
-                counter[keyword] += 1;
-            });
+            var result;
+
+            if (d.text && d.text.match) {
+                result = d.text.match(/\w{5,}/ig);
+                if (result) { 
+                    result.map(function (keyword) {
+                        counter[keyword] = counter[keyword] || 0;
+                        counter[keyword] += 1;
+                    });
+                }
+            }
         });
 
         return sortKeywords(counter);
