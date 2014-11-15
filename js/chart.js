@@ -7,10 +7,16 @@ app.factory('bubbleChart', function() {
         weight = '',
         filter = {
             begin: 0,
-            end: 100
+            end: 100,
+            speakers: []
         },
         timeScale,
         savedStatuses,
+        color = {
+            active: "#0288d1",
+            inactive: 'gray',
+            hover: '#FFD44E'
+        },
         drag;
 
     // Move nodes toward cluster focus.
@@ -87,7 +93,17 @@ app.factory('bubbleChart', function() {
         // and created_at_ms is 250,
         // the scale function will return 75.
         var scaled = timeScale(d.created_at_ms);
-        return filter.begin <= scaled && filter.end >= scaled;
+
+        return checkSpeaker(d) && filter.begin <= scaled && filter.end >= scaled;
+    }
+
+    function checkSpeaker (d) {
+        // if no speakers are in the filter, just carry on.
+        // check if any of the speakers are mentioned.
+        return filter.speakers.length === 0 ||
+            !!_.find(filter.speakers, function (speaker) {
+                return d.text.indexOf(speaker) !== -1;
+            });
     }
 
     function updateData(nodes) {
@@ -100,7 +116,7 @@ app.factory('bubbleChart', function() {
                 return d.radius;
             })
             .style("fill", function(d, i) {
-                return isActive(d) ? "#0288d1" : 'gray';
+                return d.isActive ? color.active : color.inactive;
             })
             .call(drag);
     }
@@ -139,6 +155,7 @@ app.factory('bubbleChart', function() {
             d.y = Math.random() * height /2;
 
             d.radius = Math.min(100, d.r);
+            d.isActive = isActive(d);
             return d;
         });
     }
@@ -220,7 +237,7 @@ app.factory('bubbleChart', function() {
                 d3.select(this).
                     transition().
                     style('fill', function(d) {
-                        return '#FFD44E';
+                        return color.hover;
                     });
 
                 if (!eventInTooltip()) {
@@ -243,7 +260,7 @@ app.factory('bubbleChart', function() {
                 d3.select(this).
                     transition().
                     style('fill', function(d) {
-                        return '#0288d1';
+                        return d.isActive ? color.active : color.inactive;
                     });
 
                 if (!eventInTooltip()) {
@@ -275,9 +292,14 @@ app.factory('bubbleChart', function() {
         filter.end = end;
     }
 
+    function filterSpeakers(speakers) {
+        filter.speakers = speakers || [];
+    }
+
     return {
         render: render,
         setWeight: setWeight,
-        filterTime: filterTime
+        filterTime: filterTime,
+        filterSpeakers: filterSpeakers
     };
 });

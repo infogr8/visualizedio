@@ -1,5 +1,29 @@
 var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 .controller('chartController', function($scope, bubbleChart) {
+
+
+    var speakers = {
+        'Maral Pourkazemi': '@marallo',
+        'Valentina D\'Efilippo': '@defilippovale',
+        'Surprise Guest': '',
+        'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra',
+        'William Rowe': '@willprotein',
+        'Pierre La Baume': '@labaume_de',
+        'Kate McLean': '@katemclean',
+        'Kim Albrecht': '@kimay',
+        'Bronwen Robertson': '@small_media',
+        'Stefanie Posavec': '@stefpos',
+        'Pascal Raabe': '@jazzpazz',
+        'Andreas Koller': '@akllr',
+        'Andy Kirk': '@visualisingdata',
+        'Eimar Boesjes': '@eimarb',
+        'Marcin Ignac': '@marcinignac,@variable_io',
+        'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson',
+        'Peter Crnokrak': ''
+    };
+
+    $scope.speakers = _.keys(speakers);
+
     $scope.slider = {
         min: 0,
         max: 100
@@ -22,14 +46,10 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     url = 'mock.json';
 
     d3.json(url, function(error, root) {
-        console.log('count', root.statuses.length);
         statuses = root.statuses.filter(function (d) {
             return d.retweeted_status === undefined;
         });
 
-        statuses.map(function (d) {
-            console.log(d.text);
-        });
 
         // $scope.speakers = _.uniq(statuses, function (d) {
         //     return d.user.name;
@@ -49,33 +69,10 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         $scope.$watch('slider.max', $scope.debouncedSlider);
     });
 
-
-    $scope.speakers = [
-        'Maral Pourkazemi',
-        'Valentina D\'Efilippo',
-        'Surprise Guest',
-        'M. da Gandra & M. Van Neck',
-        'William Rowe',
-        'Pierre la Baume',
-        'Kate McLean',
-        'Kim Albrecht',
-        'Bronwen Robertson',
-        'Pascal Raabe',
-        'Andreas Koller',
-        'Andy Kirk',
-        'Marcin Ignac',
-        'Pau Garcia & Dani Pearson',
-        'Peter Crnokrak'
-    ].map(function (d) {
-        return {
-            name: d
-        };
-    });
-
-    $scope.filter = function (filter) {
-        bubbleChart.render(statuses.filter(function (d) {
-            return !filter || d.user.name === filter.speaker;
-        }));
+    $scope.filterSpeakers = function (speaker) {
+        var tags = speakers[speaker].split(',');
+        bubbleChart.filterSpeakers(tags);
+        bubbleChart.render();
     };
 
     $scope.setWeight = function (filter) {
