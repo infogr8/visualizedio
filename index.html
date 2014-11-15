@@ -64,7 +64,10 @@
             </div>
 
             <h4>keywords</h4>
-            <button class="btn filters" ng-repeat="keyword in keywords | limitTo:5">{{keyword.keyword}} {{keyword.count}}</button>
+            <button class="btn filters" ng-click="filterKeyword(item.keyword)" ng-repeat="item in keywords | limitTo:5">{{item.keyword}} ({{item.count}})</button>
+
+            <h4>hashtags</h4>
+            <button class="btn filters" ng-click="filterKeyword(item.keyword)" ng-repeat="item in hashtags | limitTo:5">{{item.keyword}} ({{item.count}})</button>
 
         </div>
     </div>

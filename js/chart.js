@@ -94,7 +94,11 @@ app.factory('bubbleChart', function() {
         // the scale function will return 75.
         var scaled = timeScale(d.created_at_ms);
 
-        return checkSpeaker(d) && filter.begin <= scaled && filter.end >= scaled;
+        return checkKeyword(d) && checkSpeaker(d) && filter.begin <= scaled && filter.end >= scaled;
+    }
+
+    function checkKeyword (d) {
+        return !filter.keyword || d.text.indexOf(filter.keyword) !== -1;
     }
 
     function checkSpeaker (d) {
@@ -244,6 +248,7 @@ app.factory('bubbleChart', function() {
                     tooltip
                         .transition()
                         .duration(300)
+                        .style('pointer-events', 'auto')
                         .style("opacity", 1)
                         .style("top", (d3.event.pageY - 28) + "px")
                         .style("left", left + "px");
@@ -271,6 +276,7 @@ app.factory('bubbleChart', function() {
                     tooltip
                         .transition().duration(0)
                         .delay(300)
+                        .style('pointer-events', 'none')
                         .style("opacity", 0);
                 }
             });
@@ -300,10 +306,15 @@ app.factory('bubbleChart', function() {
         filter.speakers = speakers || [];
     }
 
+    function filterKeyword(keyword) {
+        filter.keyword = keyword;
+    }
+
     return {
         render: render,
         setWeight: setWeight,
         filterTime: filterTime,
+        filterKeyword: filterKeyword,
         filterSpeakers: filterSpeakers
     };
 });

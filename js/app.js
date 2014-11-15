@@ -57,7 +57,12 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
             });
         });
 
-        $scope.keywords = _.keys(counter).sort(function (a, b) {
+        return sortKeywords(counter);
+    }
+
+
+    function sortKeywords(counter) {
+        return _.keys(counter).sort(function (a, b) {
             return counter[b] - counter[a];
         }).map(function (keyword) {
             return {
@@ -67,21 +72,28 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         });
     }
 
+    function countHashtags (statuses) {
+        var counter = {};
+
+        statuses.map(function (d) {
+            d.entities.hashtags.map(function (hashtag) {
+                var text = hashtag.text;
+                counter[text] = counter[text] || 0;
+                counter[text] += 1;
+            });
+        });
+
+        return sortKeywords(counter);
+    }
+
     d3.json(url, function(error, root) {
         statuses = root.statuses.filter(function (d) {
             return d.retweeted_status === undefined;
         });
 
-        countKeywords(statuses);
+        $scope.keywords =countKeywords(statuses);
+        $scope.hashtags = countHashtags(statuses);
 
-
-        // $scope.speakers = _.uniq(statuses, function (d) {
-        //     return d.user.name;
-        // }).map(function (d) {
-        //     return {
-        //         name: d.user.name
-        //     };
-        // });
         $scope.$digest();
         bubbleChart.render(statuses);
 
@@ -92,6 +104,11 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         $scope.$watch('slider.min', $scope.debouncedSlider);
         $scope.$watch('slider.max', $scope.debouncedSlider);
     });
+
+    $scope.filterKeyword = function (keyword) {
+        bubbleChart.filterKeyword(keyword);
+        bubbleChart.render();
+    };
 
     $scope.filterSpeakers = function (speaker) {
         $scope.filteredSpeaker = speaker;
