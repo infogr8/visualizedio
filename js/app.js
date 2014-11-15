@@ -46,11 +46,15 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     url = 'mock.json';
 
+    function getKeywords (text) {
+        console.log(text.match(/\w{5,}/ig));
+    }
+
     d3.json(url, function(error, root) {
         statuses = root.statuses.filter(function (d) {
+            getKeywords(d.text);
             return d.retweeted_status === undefined;
         });
-
 
         // $scope.speakers = _.uniq(statuses, function (d) {
         //     return d.user.name;
@@ -73,39 +77,9 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     $scope.filterSpeakers = function (speaker) {
         $scope.filteredSpeaker = speaker;
 
-<<<<<<< HEAD
-    $scope.speakers = [
-        'Maral Pourkazemi',
-        'Valentina D\'Efilippo',
-        'Surprise Guest',
-        'M. da Gandra & M. Van Neck',
-        'William Rowe',
-        'Pierre la Baume',
-        'Kate McLean',
-        'Kim Albrecht',
-        'Bronwen Robertson',
-        'Pascal Raabe',
-        'Andreas Koller',
-        'Andy Kirk',
-        'Eimar Boesjes',
-        'Marcin Ignac',
-        'Pau Garcia & Dani Pearson',
-        'Peter Crnokrak'
-    ].map(function (d) {
-        return {
-            name: d
-        };
-    });
-
-    $scope.filter = function (filter) {
-        bubbleChart.render(statuses.filter(function (d) {
-            return !filter || d.user.name === filter.speaker;
-        }));
-=======
         var tags = speaker ? speakers[speaker].split(',') : [];
         bubbleChart.filterSpeakers(tags);
         bubbleChart.render();
->>>>>>> FETCH_HEAD
     };
 
     $scope.setWeight = function (filter) {
