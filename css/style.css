@@ -507,11 +507,31 @@ text-align: right !important;
 }
 
  .counts{
-    font-size: 0.8em;
+    font-size: 0.9em;
     color: #ADADAD;
-    font-weight: 300;
+    font-weight: 400;
 }
 
+ .counts a{
+    text-decoration: none;
+        color: #ADADAD;
+background: none;
+border: none;
+    font-weight: 700;
+}
+
+.counts a:hover{
+color: #37474f;
+    font-weight: 700;
+}
+
+#username {
+text-decoration: none;
+}
+
+#username :hover{
+text-decoration: none;
+}
 
 
 

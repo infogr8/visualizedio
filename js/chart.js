@@ -212,6 +212,10 @@ app.factory('bubbleChart', function() {
                     tooltip.select('.created_at').text(created_at);
                     tooltip.select('.user-name').text(d.user.name);
                     tooltip.select('img').attr('src', d.user.profile_image_url);
+                    tooltip.select('a.reply_link').attr('href', 'https://twitter.com/intent/tweet?in_reply_to=' + d.id_str);
+                    tooltip.select('a.retweet_link').attr('href', 'https://twitter.com/intent/retweet?tweet_id=' + d.id_str);
+                    tooltip.select('a.favourite_link').attr('href', 'https://twitter.com/intent/favorite?tweet_id=' + d.id_str);
+                    tooltip.select('a.user_link').attr('href', ' https://twitter.com/intent/user?user_id=' + d.user.id);
                 }
             })
             .on("mouseout", function() {

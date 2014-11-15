@@ -58,6 +58,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         'Pascal Raabe',
         'Andreas Koller',
         'Andy Kirk',
+        'Eimar Boesjes',
         'Marcin Ignac',
         'Pau Garcia & Dani Pearson',
         'Peter Crnokrak'

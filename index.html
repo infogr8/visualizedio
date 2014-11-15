@@ -11,7 +11,7 @@
   <link href="img/favicon.ico" rel="shortcut icon">
   <link rel="stylesheet" href="css/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="bower_components/angular-rangeslider/angular.rangeSlider.css">
-
+<script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
 
 
   <meta content="A real time bubble packing of the #VISUALIZEDio14 conference " name="description">
@@ -145,12 +145,15 @@
 
 
 <div id="tooltip" class="hidden-tooltip">
-    <img><span class="user-name"></span> <br><span class="created_at"></span> <br>
+    <img>
+    <a href="" class="user_link" target="_blank" id="username" ><span class="user-name"></span></a><br><span class="created_at"></span> 
+    <br>
     <div id="tweet"><strong>Title</strong></div>
   
     <div class="row counts">
-        <div class="col-md-6">Retweets: <span class="retweet_count"></span></div>
-        <div class="col-md-6">Favorites: <span class="favorite_count"></span></div>
+        <a href="" class="col-md-2 reply_link" target="_blank"><i class="fa fa-reply"></i></a>
+        <a href="" class="col-md-2 retweet_link" target="_blank"><span class="retweet_count"></span> <i class="fa fa-retweet"></i></a>
+        <a href="" class="col-md-2 favourite_link" target="_blank"><span class="favorite_count"></span> <i class="fa fa-star"></i></a>
     </div>
 </div>
 
@@ -162,6 +165,7 @@
 <script src="bower_components/angular-rangeslider/angular.rangeSlider.js"></script>
 <script src="js/app.js"></script>
 <script src="js/chart.js"></script>
+
 
 <!--Google Analytics -->
 
