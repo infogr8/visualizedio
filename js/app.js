@@ -43,10 +43,11 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var statuses,
         url = getUrl({
-            q: 'visualizedio'
+            q: 'xfactor',
+            count: 100
         });
 
-    url = 'mock.json';
+    //url = 'mock.json';
 
     function countKeywords (statuses) {
         var counter = {};
