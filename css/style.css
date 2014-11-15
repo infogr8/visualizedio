@@ -238,7 +238,7 @@ text-decoration: none;
     margin-bottom: 20px;
 }
 
-.speakers:focus{ 
+.speakers.active-speaker{
     outline:none;
     color: #029AE4;
     font-weight: 400;

@@ -1,5 +1,30 @@
 var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 .controller('chartController', function($scope, bubbleChart) {
+
+
+    var speakers = {
+        'Maral Pourkazemi': '@marallo',
+        'Valentina D\'Efilippo': '@defilippovale',
+        'Surprise Guest': '',
+        'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra',
+        'William Rowe': '@willprotein',
+        'Pierre La Baume': '@labaume_de',
+        'Kate McLean': '@katemclean',
+        'Kim Albrecht': '@kimay',
+        'Bronwen Robertson': '@small_media',
+        'Stefanie Posavec': '@stefpos',
+        'Pascal Raabe': '@jazzpazz',
+        'Andreas Koller': '@akllr',
+        'Andy Kirk': '@visualisingdata',
+        'Eimar Boesjes': '@eimarb',
+        'Marcin Ignac': '@marcinignac,@variable_io',
+        'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson',
+        'Peter Crnokrak': ''
+    };
+
+    $scope.speakers = _.keys(speakers);
+    $scope.filteredSpeaker = '';
+
     $scope.slider = {
         min: 0,
         max: 100
@@ -16,15 +41,16 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var statuses,
         url = getUrl({
-            q: 'visualizedio',
-            result_type: 'recent',
-            count: 300
+            q: 'visualizedio'
         });
 
     url = 'mock.json';
 
     d3.json(url, function(error, root) {
-        statuses = root.statuses;
+        statuses = root.statuses.filter(function (d) {
+            return d.retweeted_status === undefined;
+        });
+
 
         // $scope.speakers = _.uniq(statuses, function (d) {
         //     return d.user.name;
@@ -44,7 +70,10 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         $scope.$watch('slider.max', $scope.debouncedSlider);
     });
 
+    $scope.filterSpeakers = function (speaker) {
+        $scope.filteredSpeaker = speaker;
 
+<<<<<<< HEAD
     $scope.speakers = [
         'Maral Pourkazemi',
         'Valentina D\'Efilippo',
@@ -72,6 +101,11 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         bubbleChart.render(statuses.filter(function (d) {
             return !filter || d.user.name === filter.speaker;
         }));
+=======
+        var tags = speaker ? speakers[speaker].split(',') : [];
+        bubbleChart.filterSpeakers(tags);
+        bubbleChart.render();
+>>>>>>> FETCH_HEAD
     };
 
     $scope.setWeight = function (filter) {
@@ -82,13 +116,8 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     // when sliding, we want some grace. debounce waits a bit, to
     // if the function is called again, and only executes the last one.
     $scope.debouncedSlider = _.debounce(function () {
-        var begin, end;
-
-        if (statuses) {
-            begin = Math.floor(statuses.length * $scope.slider.min / 100);
-            end = Math.ceil(statuses.length * $scope.slider.max / 100);
-            bubbleChart.render(statuses.slice(begin, end));
-        }
+        bubbleChart.filterTime($scope.slider.min, $scope.slider.max);
+        bubbleChart.render();
     }, 100);
 
 });

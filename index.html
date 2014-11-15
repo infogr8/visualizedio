@@ -44,9 +44,9 @@
             <h5>Filter the tweets related<br>to each of the speakers</h5>
             <hr>
   
-            <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filter({speaker: speaker.name})">{{speaker.name}}</button>
+            <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filterSpeakers(speaker)" ng-class="{'active-speaker': speaker === filteredSpeaker}">{{speaker}}</button>
               <hr>
-              <button class="btn btn-xs all" ng-click="filter()">All the Speakers</button> 
+              <button class="btn btn-xs all" ng-click="filterSpeakers()">All the Speakers</button> 
         </div>
        
         <div class=" col-lg-6 col-md-7 col-sm-12 col-xs-12" id="chart">  
