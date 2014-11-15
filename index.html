@@ -63,6 +63,8 @@
               <button class="btn filters" ng-click="setWeight('followers')">followers</button> 
             </div>
 
+            <h4>keywords</h4>
+            <button class="btn filters" ng-repeat="keyword in keywords | limitTo:5">{{keyword.keyword}} {{keyword.count}}</button>
 
         </div>
     </div>

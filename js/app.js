@@ -24,6 +24,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     $scope.speakers = _.keys(speakers);
     $scope.filteredSpeaker = '';
+    $scope.keywords = {};
 
     $scope.slider = {
         min: 0,
@@ -46,15 +47,33 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     url = 'mock.json';
 
-    function getKeywords (text) {
-        console.log(text.match(/\w{5,}/ig));
+    function countKeywords (statuses) {
+        var counter = {};
+
+        statuses.map(function (d) {
+            d.text.match(/\w{5,}/ig).map(function (keyword) {
+                counter[keyword] = counter[keyword] || 0;
+                counter[keyword] += 1;
+            });
+        });
+
+        $scope.keywords = _.keys(counter).sort(function (a, b) {
+            return counter[b] - counter[a];
+        }).map(function (keyword) {
+            return {
+                keyword: keyword,
+                count: counter[keyword]
+            };
+        });
     }
 
     d3.json(url, function(error, root) {
         statuses = root.statuses.filter(function (d) {
-            getKeywords(d.text);
             return d.retweeted_status === undefined;
         });
+
+        countKeywords(statuses);
+
 
         // $scope.speakers = _.uniq(statuses, function (d) {
         //     return d.user.name;
