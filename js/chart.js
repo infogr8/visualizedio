@@ -44,6 +44,20 @@ app.factory('bubbleChart', function() {
         };
     }
 
+    function eventInTooltip () {
+        var tooltip = $('#tooltip'),
+            offset = tooltip.offset(),
+            width = tooltip.width() + 100, // compensate for kabouters
+            height = tooltip.height(),
+            left = d3.event.pageX,
+            top = d3.event.pageY;
+
+        return left >= offset.left &&
+            left <= offset.left + width &&
+            top >= offset.top &&
+            top <= offset.top + height;
+    }
+
     // distance from center, plus one
     function weighTweet(d) {
         if (weight === 'favorite') {
@@ -115,7 +129,7 @@ app.factory('bubbleChart', function() {
 
     function render(statuses) {
         var width = $('#chart').width(),
-            height = $('#chart').height();
+            height = 500;//$('#chart').height();
 
         if (statuses) {
             savedStatuses = statuses;
@@ -171,9 +185,11 @@ app.factory('bubbleChart', function() {
         circle
             .on("mouseover", function(d) {
                 var width = $('#tooltip').width(),
-                    left = d3.event.pageX + width + 30 > $(window).width() ?
-                        d3.event.pageX - width - 30 :
-                        d3.event.pageX + 30,
+                    offset = $(this).offset(),
+                    radius = parseFloat(d3.select(this).attr('r')),
+                    left = offset.left + width + radius > $(window).width() ?
+                        offset.left - width :
+                        offset.left + radius,
                     created_at = parseDate(d.created_at).format('MMMM DD YYYY, h:mm:ss a');
 
                 d3.select(this).
@@ -182,19 +198,21 @@ app.factory('bubbleChart', function() {
                         return '#FFD44E';
                     });
 
-                tooltip
-                    .transition()
-                    .duration(300)
-                    .style("opacity", 1)
-                    .style("top", (d3.event.pageY - 28) + "px")
-                    .style("left", left + "px");
+                if (!eventInTooltip()) {
+                    tooltip
+                        .transition()
+                        .duration(300)
+                        .style("opacity", 1)
+                        .style("top", (d3.event.pageY - 28) + "px")
+                        .style("left", left + "px");
 
-                tooltip.select("strong").text(d.text);
-                tooltip.select(".retweet_count").text(d.retweet_count);
-                tooltip.select(".favorite_count").text(d.favorite_count);
-                tooltip.select('.created_at').text(created_at);
-                tooltip.select('.user-name').text(d.user.name);
-                tooltip.select('img').attr('src', d.user.profile_image_url);
+                    tooltip.select("strong").text(d.text);
+                    tooltip.select(".retweet_count").text(d.retweet_count);
+                    tooltip.select(".favorite_count").text(d.favorite_count);
+                    tooltip.select('.created_at').text(created_at);
+                    tooltip.select('.user-name').text(d.user.name);
+                    tooltip.select('img').attr('src', d.user.profile_image_url);
+                }
             })
             .on("mouseout", function() {
                 d3.select(this).
@@ -203,10 +221,12 @@ app.factory('bubbleChart', function() {
                         return '#0288d1';
                     });
 
-                tooltip
-                    .transition().duration(0)
-                    .delay(300)
-                    .style("opacity", 0);
+                if (!eventInTooltip()) {
+                    tooltip
+                        .transition().duration(0)
+                        .delay(300)
+                        .style("opacity", 0);
+                }
             });
 
         function tick(e) {

@@ -447,7 +447,6 @@ text {
     -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 4px 4px 4px 10px rgba(0, 0, 0, 0.4);
     box-shadow: 4px 4px 10px rbga(0, 0, 0, 0.4);
-    pointer-events: none;
 }
 #tooltip.hidden-tooltip {
     opacity: 0;
