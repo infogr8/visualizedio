@@ -183,8 +183,8 @@ app.factory('bubbleChart', function(urlReplacer) {
 
         timeScale = d3.scale.linear()
             .domain([
-                _.first(data).created_at_ms,
-                _.last(data).created_at_ms
+                data.length ? _.first(data).created_at_ms : 0,
+                data.length ? _.last(data).created_at_ms : 0
             ])
             .range([0, 100]);
 

@@ -87,11 +87,21 @@ $options = array(
     CURLOPT_SSL_VERIFYPEER => false
 );
  
-$feed = curl_init();
-curl_setopt_array($feed, $options);
-$result = curl_exec($feed);
-$info = curl_getinfo($feed);
-curl_close($feed);
+// In your config file
+include("./php/phpfastcache.php");
+phpFastCache::$storage = "auto";
+$result = phpFastCache::get("products_page");
+
+if($result == null) {
+    $feed = curl_init();
+    curl_setopt_array($feed, $options);
+    $result = curl_exec($feed);
+    $info = curl_getinfo($feed);
+    curl_close($feed);
+
+    // set products in to cache in 600 seconds = 10 minutes
+    phpFastCache::set("products_page",$result,60);
+}
  
 // Send suitable headers to the end user.
 if(isset($info['content_type']) && isset($info['size_download'])){
