@@ -16,15 +16,20 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var statuses,
         url = getUrl({
-            q: 'visualizedio',
-            result_type: 'recent',
-            count: 300
+            q: 'visualizedio'
         });
 
     url = 'mock.json';
 
     d3.json(url, function(error, root) {
-        statuses = root.statuses;
+        console.log('count', root.statuses.length);
+        statuses = root.statuses.filter(function (d) {
+            return d.retweeted_status === undefined;
+        });
+
+        statuses.map(function (d) {
+            console.log(d.text);
+        });
 
         // $scope.speakers = _.uniq(statuses, function (d) {
         //     return d.user.name;
@@ -81,13 +86,8 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     // when sliding, we want some grace. debounce waits a bit, to
     // if the function is called again, and only executes the last one.
     $scope.debouncedSlider = _.debounce(function () {
-        var begin, end;
-
-        if (statuses) {
-            begin = Math.floor(statuses.length * $scope.slider.min / 100);
-            end = Math.ceil(statuses.length * $scope.slider.max / 100);
-            bubbleChart.render(statuses.slice(begin, end));
-        }
+        bubbleChart.filterTime($scope.slider.min, $scope.slider.max);
+        bubbleChart.render();
     }, 100);
 
 });

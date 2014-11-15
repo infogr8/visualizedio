@@ -5,6 +5,11 @@ app.factory('bubbleChart', function() {
     var padding = 6,
         radius = d3.scale.sqrt().range([0, 12]),
         weight = '',
+        filter = {
+            begin: 0,
+            end: 100
+        },
+        timeScale,
         savedStatuses,
         drag;
 
@@ -73,6 +78,18 @@ app.factory('bubbleChart', function() {
             d.retweet_count + d.retweet_count);
     }
 
+    // this will apply the filtering properties to see if this
+    // node qualifies
+    function isActive (d) {
+        // scaled indicates where this time stamp is from the first to
+        // the last one of the input data.
+        // say we have [100, 200, 300] as ms values,
+        // and created_at_ms is 250,
+        // the scale function will return 75.
+        var scaled = timeScale(d.created_at_ms);
+        return filter.begin <= scaled && filter.end >= scaled;
+    }
+
     function updateData(nodes) {
         var svg = d3.select("#chart svg");
 
@@ -83,7 +100,7 @@ app.factory('bubbleChart', function() {
                 return d.radius;
             })
             .style("fill", function(d, i) {
-                return "#0288d1";
+                return isActive(d) ? "#0288d1" : 'gray';
             })
             .call(drag);
     }
@@ -92,8 +109,16 @@ app.factory('bubbleChart', function() {
     function scaleBubbleSize (children, width, height) {
         var data = _.map(children, function (d, i) {
             d.value = weighTweet(d);
+            d.created_at_ms = parseDate(d.created_at).toDate().getTime();
             return d;
         });
+
+        timeScale = d3.scale.linear()
+            .domain([
+                _.first(data).created_at_ms,
+                _.last(data).created_at_ms
+            ])
+            .range([0, 100]);
 
         var bubble = d3.layout.pack()
             .sort(null)
@@ -245,8 +270,14 @@ app.factory('bubbleChart', function() {
         weight = value;
     }
 
+    function filterTime(begin, end) {
+        filter.begin = begin;
+        filter.end = end;
+    }
+
     return {
         render: render,
-        setWeight: setWeight
+        setWeight: setWeight,
+        filterTime: filterTime
     };
 });
