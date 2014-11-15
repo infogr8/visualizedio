@@ -13,9 +13,9 @@ app.factory('bubbleChart', function() {
         timeScale,
         savedStatuses,
         color = {
-            active: "#e1f5fe",
+            active: "#ffffff",
             inactive: '#42bef6',
-            hover: '#FFD44E'
+            hover: '#ffca28'
         },
         drag;
 
