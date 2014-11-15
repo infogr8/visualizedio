@@ -20,6 +20,10 @@ app.factory('bubbleChart', function(urlReplacer) {
         },
         drag;
 
+    function linkUsers (text) {
+        return text.replace(/\@(\w+)/g, '<a href="https://twitter.com/$1">@$1</a>');
+    }
+
     function inactivateCircle () {
         if (activeCircle) {
             activeCircle.
@@ -283,7 +287,8 @@ app.factory('bubbleChart', function(urlReplacer) {
                     left = offset.left + width + radius > $(window).width() ?
                         offset.left - width :
                         offset.left + radius,
-                    created_at = parseDate(d.created_at).format('MMMM DD YYYY, h:mm:ss a');
+                    created_at = parseDate(d.created_at).format('MMMM DD YYYY, h:mm:ss a'),
+                    formatted;
 
                 activeCircle = d3.select(this);
 
@@ -302,7 +307,9 @@ app.factory('bubbleChart', function(urlReplacer) {
                         .style("top", (d3.event.pageY - 28) + "px")
                         .style("left", left + "px");
 
-                    tooltip.select("strong").html(urlReplacer.replace(d.text));
+                    formatted = urlReplacer.replace(d.text);
+                    formatted = linkUsers(formatted);
+                    tooltip.select("strong").html(formatted);
                     tooltip.select(".retweet_count").text(d.retweet_count);
                     tooltip.select(".favorite_count").text(d.favorite_count);
                     tooltip.select('.created_at').text(created_at);
