@@ -23,6 +23,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     };
 
     $scope.speakers = _.keys(speakers);
+    $scope.filteredSpeaker = '';
 
     $scope.slider = {
         min: 0,
@@ -70,7 +71,9 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     });
 
     $scope.filterSpeakers = function (speaker) {
-        var tags = speakers[speaker].split(',');
+        $scope.filteredSpeaker = speaker;
+
+        var tags = speaker ? speakers[speaker].split(',') : [];
         bubbleChart.filterSpeakers(tags);
         bubbleChart.render();
     };
