@@ -55,7 +55,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var statuses,
         url = getUrl({
-            q: 'xfactor',
+            q: 'visualizedio',
             count: 100
         });
 
@@ -67,15 +67,16 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
             if (d.text && d.text.match) {
                 result = d.text.match(/\w{5,}/ig);
-                if (result) { 
+                if (result) {
                     result.map(function (keyword) {
+                        return keyword.toUpperCase();
+                    }).map(function (keyword) {
                         counter[keyword] = counter[keyword] || 0;
                         counter[keyword] += 1;
                     });
                 }
             }
         });
-
         return sortKeywords(counter);
     }
 
@@ -96,7 +97,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
         statuses.map(function (d) {
             d.entities.hashtags.map(function (hashtag) {
-                var text = hashtag.text;
+                var text = hashtag.text.toUpperCase();
                 counter[text] = counter[text] || 0;
                 counter[text] += 1;
             });
