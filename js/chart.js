@@ -11,6 +11,7 @@ app.factory('bubbleChart', function() {
             speakers: []
         },
         timeScale,
+        activeCircle,
         savedStatuses,
         color = {
             active: "#ffffff",
@@ -19,8 +20,20 @@ app.factory('bubbleChart', function() {
         },
         drag;
 
+    function inactivateCircle () {
+        if (activeCircle) {
+            activeCircle.
+                transition().
+                style('fill', function(d) {
+                    return d.isActive ? color.active : color.inactive;
+                });
+        }
+    }
+
     function hideTooltip (tooltip) {
         if (!eventInTooltip()) {
+            inactivateCircle();
+
             tooltip
                 .transition()
                 .duration(0)
@@ -70,11 +83,13 @@ app.factory('bubbleChart', function() {
         var tooltip = $('#tooltip'),
             opacity = tooltip.css('opacity'),
             offset = tooltip.offset(),
-            width = tooltip.width(), // compensate for kabouters
+            width = tooltip.width(),
             height = tooltip.height(),
             left = d3.event.pageX,
             top = d3.event.pageY;
 
+        // the +30 and +10 are compensate for as of yet unexplained
+        // behavior, probably browser offset issues.
         return opacity > 0 && left >= offset.left &&
             left <= offset.left + width + 30 &&
             top >= offset.top &&
@@ -266,7 +281,9 @@ app.factory('bubbleChart', function() {
                         offset.left + radius,
                     created_at = parseDate(d.created_at).format('MMMM DD YYYY, h:mm:ss a');
 
-                d3.select(this).
+                activeCircle = d3.select(this);
+
+                activeCircle.
                     transition().
                     style('fill', function(d) {
                         return color.hover;
@@ -294,12 +311,6 @@ app.factory('bubbleChart', function() {
                 }
             })
             .on("mouseout", function() {
-                d3.select(this).
-                    transition().
-                    style('fill', function(d) {
-                        return d.isActive ? color.active : color.inactive;
-                    });
-
                 if (!eventInTooltip()) {
                     hideTooltip(tooltip);
                 }
