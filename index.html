@@ -87,7 +87,8 @@
   <!-- Site footer -->
   <div class="bottom" >
     
-      <div class="col-md-3 col-xs-12 col-sm-12 share" >
+      <div class="col-md-2 col-md-offset-1 col-xs-12 col-sm-12 share" id="infobutton" >
+        <a  href="#info" id="info_pop"        ><i class="fa fa-info-circle share"></i></a> 
       
       </div>
 
@@ -120,15 +121,25 @@
 
   <!-- popup form #1 -->
         <a href="#x" class="overlay" id="login_form"></a>
-        <div class="popup">
+        <div class="col-md-3 col-sm-5 col-centered popup">
             <h2>Embed this into your site</h2>
             <p>Copy this code into your site or blog to share with your followers</p>
             
             <div class="code">
-              <textarea rows="4" cols="60" autofocus><iframe src="http://www.bubble.infogr8.com" width="300px" height="100px"></iframe></textarea>
+              <textarea rows="6" class="col-md-12 col-sm-12 col-xs-12 col-centered" autofocus><iframe src="http://www.bubble.infogr8.com" width="300px" height="100px"></iframe></textarea>
             </div>
 
 
+            <a class="close" href="#close"></a>
+        </div>
+
+          <!-- Info  -->
+        <a href="#y" class="overlay" id="info"></a>
+        <div class="popup">
+            <h2>Info</h2>
+            <p>Copy this code into your site or blog to share with your followers</p>
+            
+            
             <a class="close" href="#close"></a>
         </div>
 
