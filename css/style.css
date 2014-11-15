@@ -5,7 +5,7 @@
     background-color:  #FFFFFF;
     font-family: 'Lato', sans-serif;
     min-height: 120px;
-border-bottom: 4px solid #029AE4;
+/*border-bottom: 4px solid #029AE4;*/
 }
 
 .top h1{
@@ -13,8 +13,9 @@ border-bottom: 4px solid #029AE4;
     font-family: 'Lato', sans-serif;
     font-weight: 100;
     text-align: center;
-    margin-top: 26px;
+    margin-top: 35px;
      padding-bottom: 0px;
+     letter-spacing: -1px;
 
     color: #262626;
     text-decoration: none;
@@ -38,7 +39,7 @@ vertical-align: super;
 }
 
 .top b { 
-    font-weight: 900;
+    font-weight: 700;
          color: #262626;
 }
 
@@ -53,9 +54,10 @@ vertical-align: super;
     line-height: 1.5em;
     text-align: center;
     color: #FF7043;
-
+margin-right: 30px;
+margin-left: 30px;
       margin-top: 13px;
-    padding-bottom: 25px ;
+    padding-bottom: 35px ;
     margin-bottom: 0px;
  } 
 
@@ -72,7 +74,7 @@ vertical-align: super;
     min-height: 680px;
     padding: 30px 30px 30px 40px;  
     margin-top: 0px;
-    								
+
 }
 
 .page h4{
@@ -131,7 +133,7 @@ letter-spacing: 0px;
     background-color:  #FFFFFF;
 /*    background-color:  #0d1e2a;*/
     min-height: 60px;
-    border-top: 4px solid #029AE4;
+ /*   border-top: 4px solid #029AE4;*/
 
 }
 
@@ -528,11 +530,11 @@ textarea {
     resize: none;
     color: #000000;
     border:none;
-    -webkit-border-radius: 10px;
-    -moz-border-radius: 10px;
-    -ms-border-radius: 10px;
-    -o-border-radius: 10px;
-    border-radius: 10px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    -ms-border-radius: 30px;
+    -o-border-radius: 30px;
+    border-radius: 30px;
     padding: 10px;
         padding-left: 15px;
             margin-bottom: 0px;
@@ -541,7 +543,7 @@ textarea {
 
 .popup {
     z-index: 4;
-    background-color: #0187D0;
+    background-color: #29b6f6;
     border: none;
     display: inline-block;
     left: 50%;
