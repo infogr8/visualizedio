@@ -223,7 +223,7 @@ app.factory('bubbleChart', function(urlReplacer) {
 
     function render(statuses) {
         var width = $('#chart').width(),
-            height = 500;//$('#chart').height();
+            height = $('#chart').height();
 
         if (statuses) {
             savedStatuses = statuses;
