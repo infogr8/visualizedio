@@ -21,7 +21,7 @@ app.factory('bubbleChart', function(urlReplacer) {
         drag;
 
     function linkUsers (text) {
-        return text.replace(/\@(\w+)/g, '<a href="https://twitter.com/$1">@$1</a>');
+        return text.replace(/\@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank" >@$1 </a>');
     }
 
     function inactivateCircle () {
