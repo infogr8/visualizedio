@@ -65,7 +65,7 @@
 
             <button class="btn filters" ng-class="{'active-button': activeKeyword === item.keyword}" ng-click="filterKeyword(item.keyword)" ng-repeat="item in keywords | limitTo:5">{{item.keyword}} ({{item.count}})</button>
             <hr>
-            <h4>hashtags</h4>
+            <h4>#hashtags</h4>
             <button class="btn filters" ng-class="{'active-button': activeHashtag === item.keyword}" ng-click="filterHashtag(item.keyword)" ng-repeat="item in hashtags | limitTo:5">{{item.keyword}} ({{item.count}})</button>
 
         </div>
