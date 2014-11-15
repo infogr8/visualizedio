@@ -407,6 +407,17 @@ text-align: center !important;}
 
 }
 
+.popup h2 {
+    font-weight: 700 !important;
+    font-size: 1.3em !important;
+}
+
+.popup p{
+font-style: normal !important;
+padding-top: 5px !important;
+line-height: 1.4em !important;
+}
+
 
 }
 
