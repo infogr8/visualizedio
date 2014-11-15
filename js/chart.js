@@ -21,7 +21,11 @@ app.factory('bubbleChart', function(urlReplacer) {
         drag;
 
     function linkUsers (text) {
-        return text.replace(/\@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank" >@$1 </a>');
+        return text.replace(/\@(\w+)/g, '<a href="https://twitter.com/$1" target="_blank">@$1</a>');
+    }
+
+    function linkHashtags (text) {
+        return text.replace(/\#(\w+)/g, '<a href="https://twitter.com/hashtag/$1?src=tren" target="_blank">#$1</a>');
     }
 
     function inactivateCircle () {
@@ -309,6 +313,7 @@ app.factory('bubbleChart', function(urlReplacer) {
 
                     formatted = urlReplacer.replace(d.text);
                     formatted = linkUsers(formatted);
+                    formatted = linkHashtags(formatted);
                     tooltip.select("strong").html(formatted);
                     tooltip.select(".retweet_count").text(d.retweet_count);
                     tooltip.select(".favorite_count").text(d.favorite_count);
