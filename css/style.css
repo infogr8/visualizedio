@@ -247,14 +247,22 @@ text-decoration: none;
 }
 
 button.active-button {
-    outline:none !important;
+    outline: none !important;
     color: #029AE4;
     font-weight: 400;
     background-color: #FFFFFF;
+
 box-shadow: none;
     border:none;
   box-shadow: 0px 2px 0px #0187D0;
 }
+
+button:active {
+box-shadow: none !important;
+border: none;
+outline: none !important;
+}
+
 
 .speakers:hover {
     color: #029AE4;
@@ -263,24 +271,32 @@ box-shadow: none;
         border:none;
 }
 
-/*.all:focus { 
+.all:focus { 
     outline:none;
-    color: #029AE4;
+    color: #014880;
     background-color: #FFFFFF;
     box-shadow: 0px 2px 0px #0187D0;
     border:none;
 }
-*/
+
 .all:hover {
+    outline:none !important;
     color: #029AE4;
     background-color: #FFFFFF;
-        border:none;
+    border:none;
 }
 
 .all:active {
     outline:none !important;
     background-color: #FFFFFF;
     box-shadow: none;
+    color: #014880;
+    border:none;
+}
+
+.all:visited {
+    outline:none !important;
+    color: #014880;
     border:none;
 }
 
