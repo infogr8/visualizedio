@@ -1,6 +1,6 @@
 var app = app || angular.module('bubbleApp', ['ui-rangeSlider']);
 
-app.factory('bubbleChart', function() {
+app.factory('bubbleChart', function(urlReplacer) {
 
     var padding = 6,
         radius = d3.scale.sqrt().range([0, 12]),
@@ -200,6 +200,7 @@ app.factory('bubbleChart', function() {
 
             d.radius = Math.min(100, d.r);
             d.isActive = isActive(d);
+            d.text = urlReplacer.replace(d.text);
             return d;
         });
     }
@@ -298,7 +299,7 @@ app.factory('bubbleChart', function() {
                         .style("top", (d3.event.pageY - 28) + "px")
                         .style("left", left + "px");
 
-                    tooltip.select("strong").text(d.text);
+                    tooltip.select("strong").html(d.text);
                     tooltip.select(".retweet_count").text(d.retweet_count);
                     tooltip.select(".favorite_count").text(d.favorite_count);
                     tooltip.select('.created_at').text(created_at);
