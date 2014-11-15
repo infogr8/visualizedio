@@ -90,7 +90,7 @@ $options = array(
 // In your config file
 include("./php/phpfastcache.php");
 phpFastCache::$storage = "auto";
-$result = phpFastCache::get("products_page");
+$result = phpFastCache::get($url_arguments);
 
 if($result == null) {
     $feed = curl_init();
@@ -100,7 +100,7 @@ if($result == null) {
     curl_close($feed);
 
     // set products in to cache in 600 seconds = 10 minutes
-    phpFastCache::set("products_page",$result,60);
+    phpFastCache::set($url_arguments,$result,60);
 }
  
 // Send suitable headers to the end user.

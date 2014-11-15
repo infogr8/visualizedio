@@ -146,7 +146,7 @@ app.factory('bubbleChart', function(urlReplacer) {
     }
 
     function checkKeyword (d) {
-        return !filter.keyword || d.text.indexOf(filter.keyword) !== -1;
+        return !filter.keyword || d.text.toUpperCase().indexOf(filter.keyword) !== -1;
     }
 
     function checkSpeaker (d) {

@@ -55,7 +55,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var statuses,
         url = getUrl({
-            q: 'visualizedio14',
+            q: 'visualizedio',
             count: 100
         });
 
