@@ -19,6 +19,17 @@ app.factory('bubbleChart', function() {
         },
         drag;
 
+    function hideTooltip (tooltip) {
+        if (!eventInTooltip()) {
+            tooltip
+                .transition()
+                .duration(0)
+                .delay(300)
+                .style('pointer-events', 'none')
+                .style("opacity", 0);
+        }
+    }
+
     // Move nodes toward cluster focus.
     function gravity(alpha) {
         return function(d) {
@@ -65,9 +76,9 @@ app.factory('bubbleChart', function() {
             top = d3.event.pageY;
 
         return opacity > 0 && left >= offset.left &&
-            left <= offset.left + width &&
+            left <= offset.left + width + 30 &&
             top >= offset.top &&
-            top <= offset.top + height;
+            top <= offset.top + height + 10;
     }
 
     // distance from center, plus one
@@ -241,6 +252,9 @@ app.factory('bubbleChart', function() {
 
         var circle = updateData(nodes);
         var tooltip = d3.select("#tooltip");
+        tooltip.on('mouseout', function () {
+            hideTooltip(tooltip);
+        });
 
         circle
             .on("mouseover", function(d) {
@@ -287,11 +301,7 @@ app.factory('bubbleChart', function() {
                     });
 
                 if (!eventInTooltip()) {
-                    tooltip
-                        .transition().duration(0)
-                        .delay(300)
-                        .style('pointer-events', 'none')
-                        .style("opacity", 0);
+                    hideTooltip(tooltip);
                 }
             });
 
