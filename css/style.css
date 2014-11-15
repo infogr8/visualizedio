@@ -245,8 +245,7 @@ text-decoration: none;
     margin-bottom: 20px;
 }
 
-.timefilter.active,
-.speakers.active-speaker{
+button.active-button {
     outline:none;
     color: #029AE4;
     font-weight: 400;
@@ -262,22 +261,15 @@ box-shadow: none;
     background-color: #FFFFFF;
         border:none;
 }
-.speakers:active {
-    outline:none !important;
-/*    color: #00569A;*/
-    background-color: #FFFFFF;
-    box-shadow: none;
-    border:none;
-}
 
-.all:focus { 
+/*.all:focus { 
     outline:none;
     color: #029AE4;
     background-color: #FFFFFF;
     box-shadow: 0px 2px 0px #0187D0;
     border:none;
 }
-
+*/
 .all:hover {
     color: #029AE4;
     background-color: #FFFFFF;
@@ -314,7 +306,7 @@ box-shadow: none;
 
 
 }
-
+/*
 .filters:focus{ 
     outline:none;
     color: #35a9dc;
@@ -328,13 +320,13 @@ box-shadow: none;
         border:none;
         background-color: #FFFFFF;
 }
-.filters:active {
+*//*.filters:active {
     outline:none !important;
     background-color: #FFFFFF;
     box-shadow: none;
     border:none;
 }
-
+*/
 /* timebottons */
 
 

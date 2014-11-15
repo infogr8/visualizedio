@@ -25,6 +25,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     $scope.speakers = _.keys(speakers);
     $scope.filteredSpeaker = '';
     $scope.keywords = {};
+    $scope.weights = ['favourites', 'followers', 'retweets'];
 
     $scope.slider = {
         min: 0,
@@ -105,8 +106,21 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         $scope.$watch('slider.max', $scope.debouncedSlider);
     });
 
-    $scope.filterKeyword = function (keyword) {
-        bubbleChart.filterKeyword(keyword);
+    $scope.filterKeyword = function (d) {
+        if ($scope.activeKeyword === d) {
+            $scope.activeKeyword = d = '';
+        }
+        $scope.activeKeyword = d;
+        bubbleChart.filterKeyword(d);
+        bubbleChart.render();
+    };
+
+    $scope.filterHashtag = function (d) {
+        if ($scope.activeHashtag === d) {
+            $scope.activeHashtag = d = '';
+        }
+        $scope.activeHashtag = d;
+        bubbleChart.filterKeyword(d);
         bubbleChart.render();
     };
 
@@ -116,9 +130,6 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         var tags = speaker ? speakers[speaker].split(',') : [];
         bubbleChart.filterSpeakers(tags);
         bubbleChart.render();
-    };
-
-    $scope.toggleTimeFilter = function () {
     };
 
     $scope.filterBefore = function () {
@@ -147,6 +158,10 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     };
 
     $scope.setWeight = function (filter) {
+        if ($scope.activeWeight === filter) {
+            $scope.activeWeight = filter = '';
+        }
+        $scope.activeWeight = filter;
         bubbleChart.setWeight(filter);
         bubbleChart.render();
     };
