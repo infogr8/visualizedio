@@ -118,6 +118,34 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         bubbleChart.render();
     };
 
+    $scope.toggleTimeFilter = function () {
+    };
+
+    $scope.filterBefore = function () {
+        bubbleChart.filterBefore();
+        if ($scope.before) {
+            $scope.sliderDisabled = false;
+            $scope.before = false;
+        } else {
+            $scope.sliderDisabled = true;
+            $scope.before = true;
+            $scope.after = false;
+        }
+        bubbleChart.render();
+    };
+    $scope.filterAfter = function () {
+        bubbleChart.filterAfter();
+        if ($scope.after) {
+            $scope.sliderDisabled = false;
+            $scope.after = false;
+        } else {
+            $scope.sliderDisabled = true;
+            $scope.after = true;
+            $scope.before = false;
+        }
+        bubbleChart.render();
+    };
+
     $scope.setWeight = function (filter) {
         bubbleChart.setWeight(filter);
         bubbleChart.render();

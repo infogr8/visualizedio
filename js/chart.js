@@ -87,14 +87,27 @@ app.factory('bubbleChart', function() {
     // this will apply the filtering properties to see if this
     // node qualifies
     function isActive (d) {
+        return checkKeyword(d) && checkSpeaker(d) && checkTime(d);
+    }
+
+    // by default show all input, limited by begin and end
+    // if beforeEvent: show all input before event start
+    // if afterEvent: show all input after event start
+    function checkTime(d) {
+        if (filter.beforeEvent) {
+            return d.created_at_ms < new Date('2014-11-22 10:00').getTime();
+        }
+        if (filter.afterEvent) {
+            return d.created_at_ms > new Date('2014-11-22 18:00').getTime();
+        }
+
         // scaled indicates where this time stamp is from the first to
         // the last one of the input data.
         // say we have [100, 200, 300] as ms values,
         // and created_at_ms is 250,
         // the scale function will return 75.
         var scaled = timeScale(d.created_at_ms);
-
-        return checkKeyword(d) && checkSpeaker(d) && filter.begin <= scaled && filter.end >= scaled;
+        return filter.begin <= scaled && filter.end >= scaled;
     }
 
     function checkKeyword (d) {
@@ -310,9 +323,21 @@ app.factory('bubbleChart', function() {
         filter.keyword = keyword;
     }
 
+    function filterBefore() {
+        filter.beforeEvent = true;
+        filter.afterEvent = false;
+    }
+
+    function filterAfter() {
+        filter.beforeEvent = false;
+        filter.afterEvent = true;
+    }
+
     return {
         render: render,
         setWeight: setWeight,
+        filterBefore: filterBefore,
+        filterAfter: filterAfter,
         filterTime: filterTime,
         filterKeyword: filterKeyword,
         filterSpeakers: filterSpeakers

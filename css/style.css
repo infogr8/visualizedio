@@ -238,6 +238,7 @@ text-decoration: none;
     margin-bottom: 20px;
 }
 
+.timefilter.active,
 .speakers.active-speaker{
     outline:none;
     color: #029AE4;

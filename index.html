@@ -73,15 +73,15 @@
     </div>
     <div class="row">
         <div class="col-md-2 col-md-offset-2 ">
-          <button class="btn btn-xs timeframe" id="timeleft">Before the event</button>
+          <button class="btn btn-xs timeframe timefilter" id="timeleft" ng-click="filterBefore()" ng-class="{active: before}">Before the event</button>
         </div>
 
-            <div class="col-md-4 col-sm-12 col-xs-12 " range-slider min="0" max="100" model-min="slider.min" model-max="slider.max">
+            <div class="col-md-4 col-sm-12 col-xs-12 " disabled="sliderDisabled" range-slider min="0" max="100" model-min="slider.min" model-max="slider.max">
               
             </div>
         
         <div class="col-md-2 ">
-          <button class="btn btn-lg timeframe" id="timeright">After the event</button>
+          <button class="btn btn-lg timeframe timefilter" id="timeright" ng-class="{active: after}" ng-click="filterAfter()">After the event</button>
         </div>
     </div>
   </div>
