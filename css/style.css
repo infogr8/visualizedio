@@ -355,6 +355,11 @@ margin-bottom: 10px;
 
 @media only screen and (max-width : 992px) {
 
+#infobutton {
+    padding-top: 20px;
+    margin-bottom: 0px;
+text-align: center !important;}
+
 
 #chart {
   height: 400px;
