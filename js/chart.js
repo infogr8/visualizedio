@@ -4,17 +4,9 @@ app.factory('bubbleChart', function() {
 
     var padding = 6,
         radius = d3.scale.sqrt().range([0, 12]),
-        m = 1,
-        color = d3.scale.category10().domain(d3.range(m)),
-        drag,
-        statuses,
-        margin = {
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0
-        };
-
+        weight = '',
+        savedStatuses,
+        drag;
 
     // Move nodes toward cluster focus.
     function gravity(alpha) {
@@ -52,32 +44,19 @@ app.factory('bubbleChart', function() {
         };
     }
 
-
-
     // distance from center, plus one
     function weighTweet(d) {
+        if (weight === 'favorite') {
+            return 1 + d.favorite_count;
+        }
+
+        if (weight === 'retweets') {
+            return 1 + d.retweet_count;
+        }
+
         return 1 + Math.sqrt(
             d.favorite_count * d.favorite_count +
             d.retweet_count + d.retweet_count);
-    }
-
-
-    function selectNodes (children, width, height) {
-        var x = d3.scale.ordinal().domain(d3.range(m)).rangePoints([0, width], 1);
-        var nodes = _.map(children, function(item, index) {
-            var i = Math.floor(Math.random() * m);
-
-            item.cx = x(i);
-            item.cy = height / 2;
-
-            // reset
-            item.x = Math.random() * width / 2;
-            item.y = Math.random() * height /2;
-
-            return item;
-        });
-
-        return nodes;
     }
 
     function updateData(nodes) {
@@ -96,7 +75,7 @@ app.factory('bubbleChart', function() {
     }
 
     // abuse the pack layout to calculate the radii
-    function abuseBubble (children, width, height) {
+    function scaleBubbleSize (children, width, height) {
         var data = _.map(children, function (d, i) {
             d.value = weighTweet(d);
             return d;
@@ -111,26 +90,40 @@ app.factory('bubbleChart', function() {
             children: data
         })
         .filter(function(d) {
-            return !d.children;
+            return !d.children && d.text;
         }).map(function (d) {
+            d.cx = width / 2;
+            d.cy = height / 2;
+
+            // reset
+            d.x = Math.random() * width / 2;
+            d.y = Math.random() * height /2;
+
             d.radius = Math.min(100, d.r);
             return d;
         });
-
     }
 
+    // twitter date comes with weekday in front, strip it off
+    // e.g. Tue Nov 04 13:32:42 +0000 2014
+    // then use moment.js to parse.
     function parseDate(date) {
         var replaced = date.replace(/^\w{3} /, '');
+
         return moment(replaced, 'MMMM DD HH:mm:SS Z YYYY');
     }
 
     function render(statuses) {
-        var width = parseFloat(d3.select('#chart').style('width').replace(/px$/, '')),
+        var width = $('#chart').width(),
             height = width;
 
-        var children = statuses,
-            nodes = abuseBubble(children, width, height);
-        nodes = selectNodes(nodes, width, height);
+        if (statuses) {
+            savedStatuses = statuses;
+        } else {
+            statuses = savedStatuses;
+        }
+
+        var nodes = scaleBubbleSize(statuses, width, height);
 
         var force = d3.layout.force()
             .nodes(nodes)
@@ -156,14 +149,23 @@ app.factory('bubbleChart', function() {
             }
         }
 
+        // var svg = d3.select("#chart svg");
+
+        // if (svg[0][0] === null) {
+        //     svg = d3.select('#chart').append('svg');
+        // } else {
+        //     console.log('got a live one');
+        // }
+
+        // svg.attr("width", width).attr('height', height);
         var svg = d3.select("#chart").select("svg").remove();
 
-            svg = d3.select("#chart").append("svg")
-                .attr("width", width + margin.left + margin.right)
-                .attr("height", height + margin.top + margin.bottom);
+        svg = d3.select("#chart").append("svg")
+            .attr("width", width)
+            .attr("height", height);
 
 
-        var circle = updateData(nodes, drag);
+        var circle = updateData(nodes);
         var tooltip = d3.select("#tooltip");
 
         circle
@@ -204,7 +206,7 @@ app.factory('bubbleChart', function() {
                 tooltip
                     .transition().duration(0)
                     .delay(300)
-                    .style("opacity", 0)
+                    .style("opacity", 0);
             });
 
         function tick(e) {
@@ -219,8 +221,12 @@ app.factory('bubbleChart', function() {
         }
     }
 
+    function setWeight(value) {
+        weight = value;
+    }
+
     return {
         render: render,
-        updateData: updateData
+        setWeight: setWeight
     };
 });

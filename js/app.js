@@ -39,6 +39,9 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         d3.select(window).on('resize', function () {
             bubbleChart.render(statuses);
         });
+
+        $scope.$watch('slider.min', $scope.debouncedSlider);
+        $scope.$watch('slider.max', $scope.debouncedSlider);
     });
 
 
@@ -66,13 +69,18 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     $scope.filter = function (filter) {
         bubbleChart.render(statuses.filter(function (d) {
-            //console.log(filter, d.user.name)
             return !filter || d.user.name === filter.speaker;
         }));
     };
 
-    // when sliding, we want some grace
-    var debounced = _.debounce(function () {
+    $scope.setWeight = function (filter) {
+        bubbleChart.setWeight(filter);
+        bubbleChart.render();
+    };
+
+    // when sliding, we want some grace. debounce waits a bit, to
+    // if the function is called again, and only executes the last one.
+    $scope.debouncedSlider = _.debounce(function () {
         var begin, end;
 
         if (statuses) {
@@ -82,6 +90,4 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         }
     }, 100);
 
-    $scope.$watch('slider.min', debounced);
-    $scope.$watch('slider.max', debounced);
 });
