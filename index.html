@@ -42,7 +42,7 @@
         <div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12 col-xs-12" id="speakers">  
             <h4> speakers</h4>
             <h5>Filter the tweets related<br>to each of the speakers</h5>
-            <hr>
+
   
             <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filterSpeakers(speaker)" ng-class="{'active-button': speaker === filteredSpeaker}">{{speaker}}</button>
               <hr>
@@ -57,11 +57,12 @@
             <div>
             <h4>size</h4>
             <h5>Resize depending on the properties <br> of each tweet</h5>
-            <hr>
+
               <button class="btn filters" ng-repeat="weight in weights" ng-class="{'active-button': activeWeight === weight}" ng-click="setWeight(weight)">{{weight}}</button> 
             </div>
             <hr>
             <h4>keywords</h4>
+
             <button class="btn filters" ng-class="{'active-button': activeKeyword === item.keyword}" ng-click="filterKeyword(item.keyword)" ng-repeat="item in keywords | limitTo:5">{{item.keyword}} ({{item.count}})</button>
             <hr>
             <h4>hashtags</h4>
