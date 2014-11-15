@@ -106,24 +106,47 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         return sortKeywords(counter);
     }
 
-    d3.json(url, function(error, root) {
-        statuses = root.statuses.filter(function (d) {
-            return d.retweeted_status === undefined;
+    var previous;
+
+    $scope.refresh = function () {
+        d3.json(url, function(error, root) {
+            // see if something has changed
+
+            if (!_.isEqual(root, previous)) {
+                // deep clone
+                previous = JSON.parse(JSON.stringify(root));
+
+                statuses = root.statuses.filter(function (d) {
+                    return d.retweeted_status === undefined;
+                });
+
+                $scope.keywords =countKeywords(statuses);
+                $scope.hashtags = countHashtags(statuses);
+
+                $scope.$digest();
+                bubbleChart.render(statuses);
+
+                if (!$scope.inited) {
+                    $scope.initListeners();
+                }
+            }
         });
+    };
 
-        $scope.keywords =countKeywords(statuses);
-        $scope.hashtags = countHashtags(statuses);
+    // yup, every thirty seconds we poll.
+    $scope.refresh();
+    setInterval(function () { $scope.refresh(); }, 30 * 1000);
 
-        $scope.$digest();
-        bubbleChart.render(statuses);
-
+    $scope.initListeners = function () {
         d3.select(window).on('resize', function () {
             bubbleChart.render(statuses);
         });
 
         $scope.$watch('slider.min', $scope.debouncedSlider);
         $scope.$watch('slider.max', $scope.debouncedSlider);
-    });
+
+        $scope.inited = true;
+    };
 
     $scope.filterKeyword = function (d) {
         if ($scope.activeKeyword === d) {
