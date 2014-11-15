@@ -57,13 +57,14 @@ app.factory('bubbleChart', function() {
 
     function eventInTooltip () {
         var tooltip = $('#tooltip'),
+            opacity = tooltip.css('opacity'),
             offset = tooltip.offset(),
-            width = tooltip.width() + 100, // compensate for kabouters
+            width = tooltip.width(), // compensate for kabouters
             height = tooltip.height(),
             left = d3.event.pageX,
             top = d3.event.pageY;
 
-        return left >= offset.left &&
+        return opacity > 0 && left >= offset.left &&
             left <= offset.left + width &&
             top >= offset.top &&
             top <= offset.top + height;
