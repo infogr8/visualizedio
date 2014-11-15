@@ -25,7 +25,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     $scope.speakers = _.keys(speakers);
     $scope.filteredSpeaker = '';
     $scope.keywords = {};
-    $scope.weights = ['favourites', 'followers', 'retweets'];
+    $scope.weights = ['retweets', 'favourites', 'followers'];
 
     $scope.slider = {
         min: 0,

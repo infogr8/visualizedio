@@ -200,7 +200,6 @@ app.factory('bubbleChart', function(urlReplacer) {
 
             d.radius = Math.min(100, d.r);
             d.isActive = isActive(d);
-            d.text = urlReplacer.replace(d.text);
             return d;
         });
     }
@@ -299,7 +298,7 @@ app.factory('bubbleChart', function(urlReplacer) {
                         .style("top", (d3.event.pageY - 28) + "px")
                         .style("left", left + "px");
 
-                    tooltip.select("strong").html(d.text);
+                    tooltip.select("strong").html(urlReplacer.replace(d.text));
                     tooltip.select(".retweet_count").text(d.retweet_count);
                     tooltip.select(".favorite_count").text(d.favorite_count);
                     tooltip.select('.created_at').text(created_at);
