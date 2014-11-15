@@ -57,6 +57,7 @@
             <div>
             <h4>size</h4>
             <h5>Resize depending on the properties <br> of each tweet</h5>
+              <button class="btn filters" ng-class="{'active-button': !activeWeight}" ng-click="setWeight()">Importance</button> 
 
               <button class="btn filters" ng-repeat="weight in weights" ng-class="{'active-button': activeWeight === weight}" ng-click="setWeight(weight)">{{weight}}</button> 
             </div>
