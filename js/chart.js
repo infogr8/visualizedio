@@ -115,7 +115,7 @@ app.factory('bubbleChart', function() {
 
     function render(statuses) {
         var width = $('#chart').width(),
-            height = width;
+            height = $('#chart').height();
 
         if (statuses) {
             savedStatuses = statuses;
