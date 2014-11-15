@@ -90,7 +90,7 @@ margin-left: 30px;
     font-size: 1.8em;
 color: #FFFFFF;   
 line-height: 1.3em;
-
+margin-bottom: 5px;
 letter-spacing: 0px;                        
 }
 
@@ -309,10 +309,10 @@ outline: none !important;
     background-color: #029AE4;
     box-shadow: 0px 2px 0px #0187D0;
     border:none;
-    margin-top: 10px;
+    margin-top: 5px;
     text-transform: uppercase;
-    padding-top: 7px;
-    margin-left: 7px;
+    padding-top: 6px;
+    margin-left: 6px;
     padding-bottom: 7px;
     -moz-border-radius: 16px; 
     -webkit-border-radius: 16px; 
@@ -422,6 +422,9 @@ text-align: center !important;}
 
 #filters hr{
   margin-right: 0;
+
+margin-top: 16px;
+margin-bottom: 10px;
 }
 
 }
