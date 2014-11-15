@@ -26,7 +26,7 @@ app.factory('urlReplacer', function() {
                     rParens = m[2] + rParens;
                 }
             }
-            return lParens + "<a href='" + url + "'>" + url + "</a>" + rParens;
+            return lParens + "<a target=\"_blank\" href='" + url + "'>" + url + "</a>" + rParens;
         });
     }
 
