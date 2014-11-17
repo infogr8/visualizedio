@@ -87,11 +87,12 @@ margin-left: 30px;
 .page h4{
     font-family: 'Lato', sans-serif;
     font-weight: 700;
-    font-size: 1.8em;
+    font-size: 1em;
+    letter-spacing: 3px;
 color: #FFFFFF;   
 line-height: 1.3em;
 margin-bottom: 5px;
-letter-spacing: 0px;                        
+text-transform: uppercase;                       
 }
 
 .page h5{
@@ -109,16 +110,18 @@ letter-spacing: 0px;
 
  #speakers hr {
 
-  border-top: 1px solid #FFFFFF;
+  border-top: 1px solid #81d4fa;
   width: 30%;
+
 
                             
 }
 
  #filters hr {
 
-  border-top: 1px solid #FFFFFF;
+  border-top: 1px solid #81d4fa;
   width: 30%;
+
 
                             
 }
@@ -474,8 +477,8 @@ line-height: 1.4em !important;
 #filters hr{
   margin-right: 0;
 
-margin-top: 16px;
-margin-bottom: 10px;
+margin-top: 20px;
+margin-bottom: 18px;
 }
 
 }
