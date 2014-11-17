@@ -144,6 +144,10 @@ letter-spacing: 0px;
 
 }
 
+.btn {
+    border: none;
+}
+
 
 
 #signature {
@@ -249,7 +253,6 @@ text-decoration: none;
 button.active-button {
     outline: none !important;
     color: #029AE4;
-    font-weight: 400;
     background-color: #FFFFFF;
 box-shadow: none;
     border:none;
