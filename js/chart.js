@@ -5,11 +5,12 @@ app.factory('bubbleChart', function(urlReplacer) {
     var padding = 6,
         radius = d3.scale.sqrt().range([0, 12]),
         weight = '',
-        filter = {
+        RESET_FILTER = {
             begin: 0,
             end: 100,
             speakers: []
         },
+        filter = _.clone(RESET_FILTER),
         timeScale,
         activeCircle,
         savedStatuses,
@@ -371,6 +372,10 @@ app.factory('bubbleChart', function(urlReplacer) {
         filter.afterEvent = true;
     }
 
+    function reset () {
+        filter = _.clone(RESET_FILTER);
+    }
+
     return {
         render: render,
         setWeight: setWeight,
@@ -378,6 +383,7 @@ app.factory('bubbleChart', function(urlReplacer) {
         filterAfter: filterAfter,
         filterTime: filterTime,
         filterKeyword: filterKeyword,
-        filterSpeakers: filterSpeakers
+        filterSpeakers: filterSpeakers,
+        reset: reset
     };
 });

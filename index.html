@@ -47,6 +47,8 @@
             <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filterSpeakers(speaker)" ng-class="{'active-button': speaker === filteredSpeaker}">{{speaker}}</button>
               <hr>
               <button class="btn btn-xs all" ng-class="{'active-button': !filteredSpeaker}" ng-click="filterSpeakers()">All the Speakers</button> 
+
+              <button class="btn btn-xs all" ng-click="reset()">Reset</button> 
         </div>
        
         <div class=" col-lg-6 col-md-7 col-sm-12 col-xs-12" id="chart">  

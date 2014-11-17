@@ -199,6 +199,20 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         bubbleChart.render();
     };
 
+    // smelly, should really put all the filters in one object
+    $scope.reset = function () {
+        $scope.filteredSpeaker = '';
+        $scope.before = false;
+        $scope.slider.min = 0;
+        $scope.slider.max = 100;
+        $scope.after = false;
+        $scope.activeHashtag = '';
+        $scope.activeKeyword = '';
+        $scope.activeWeight = '';
+        bubbleChart.reset();
+        bubbleChart.render();
+    };
+
     $scope.setWeight = function (filter) {
         if ($scope.activeWeight === filter) {
             $scope.activeWeight = filter = '';
