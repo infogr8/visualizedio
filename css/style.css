@@ -278,6 +278,11 @@ button {
 color: #029AE4;
 }
 
+.btn:hover, .btn:focus {
+color: #029AE4;
+
+}
+
 .speakers:hover {
     color: #029AE4;
     font-weight: 400;
