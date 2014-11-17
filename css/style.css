@@ -278,10 +278,18 @@ button {
 color: #029AE4;
 }
 
-.btn:hover, .btn:focus {
+.btn:hover, {
 color: #029AE4;
+outline: none !important;
+}
+
+.btn:focus, {
+color: #014880;
+outline: none !important;
+
 
 }
+
 
 .speakers:hover {
     color: #029AE4;
