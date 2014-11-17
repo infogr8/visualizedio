@@ -263,8 +263,20 @@ button:active {
 box-shadow: none !important;
 border: none;
 outline: none !important;
+    color: #014880 !important;
 }
 
+button:hover {
+
+border: none;
+outline: none !important;
+background-color: #FFFFFF;
+    color: #029AE4 !important;
+}
+
+button {
+color: #029AE4;
+}
 
 .speakers:hover {
     color: #029AE4;
@@ -272,6 +284,18 @@ outline: none !important;
     background-color: #FFFFFF;
         border:none;
 }
+
+.speakers:focus {
+color: #029AE4;
+
+}
+
+.speakers:active {
+color: #014880;
+
+}
+
+
 
 .all:focus { 
     outline: none !important;
