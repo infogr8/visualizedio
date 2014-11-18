@@ -135,7 +135,7 @@ app.factory('bubbleChart', function(urlReplacer) {
     // if afterEvent: show all input after event start
     function checkTime(d) {
         if (filter.beforeEvent) {
-            return d.created_at_ms < new Date('2014-11-22 10:00').getTime();
+            return d.created_at_ms < new Date('2014-11-22 9:50').getTime();
         }
         if (filter.afterEvent) {
             return d.created_at_ms > new Date('2014-11-22 18:00').getTime();

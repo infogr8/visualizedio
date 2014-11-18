@@ -41,14 +41,12 @@
     <div class="row">
         <div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12 col-xs-12" id="speakers">  
             <h4> speakers</h4>
-            <h5>Filter the tweets related<br>to each of the speakers</h5>
+            <h5>Filter the tweets related<br>to each of the speakers<br>at the conference</h5>
 
   
             <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filterSpeakers(speaker)" ng-class="{'active-button': speaker === filteredSpeaker}">{{speaker}}</button>
               <hr>
               <button class="btn btn-xs all" ng-class="{'active-button': !filteredSpeaker}" ng-click="filterSpeakers()">All the Speakers</button> 
-
-              <button class="btn btn-xs all" ng-click="reset()">Reset</button> 
         </div>
        
         <div class=" col-lg-6 col-md-7 col-sm-12 col-xs-12" id="chart">  
@@ -70,6 +68,8 @@
             <hr>
             <h4>#hashtags</h4>
             <button class="btn filters" ng-class="{'active-button': activeHashtag === item.keyword}" ng-click="filterHashtag(item.keyword)" ng-repeat="item in hashtags | limitTo:5">{{item.keyword}} ({{item.count}})</button>
+            <hr>
+            <button class="btn btn-xs all" ng-click="reset()"> <span class="glyphicon glyphicon-remove" style="vertical-align:-1px"></span> Reset Filters</button> 
 
         </div>
     </div>
@@ -129,7 +129,7 @@
   <!-- popup form #1 -->
         <a href="#x" class="overlay" id="login_form"></a>
         <div class="col-md-3 col-sm-5 col-centered popup">
-            <h2>Embed this into your site</h2>
+            <h2>Embedding code</h2>
             <p>Copy this code into your site or blog to share with your followers</p>
             
             <div class="code">
@@ -142,12 +142,12 @@
 
           <!-- Info  -->
         <a href="#y" class="overlay" id="info"></a>
-        <div class="popup">
+        <div class="popup col-md-4 infopop" >
             <h2>Info</h2>
-            <p>Copy this code into your site or blog to share with your followers</p>
+            <p>Bubbleized is a beta tool produced at <a href="http://infogr8.com/" target="_blank">Infogr8</a> labs London. <br> This collaboration lead by <a href="https://www.linkedin.com/profile/view?id=29262487&authType=NAME_SEARCH&authToken=GAJM&locale=en_US&trk=tyah&trkInfo=tarId%3A1416333172720%2Ctas%3Arichard%20silvester%2Cidx%3A1-1-1" target="_blank">Richard Silvester</a> and <a href="http://www.giuliofagiolini.com" target="_blank">Giulio Fagiolini</a> starts from the occasion of having the <a href="http://visualized.io/london/" target="_blank">VISUALIZED</a> event hosted here in London and it's an attempt to visually explore and interact with the twitter activity pre, during and post the conference. Filters,  <br> Infogr8 labs is a division of Infogr8 - producing visual solutions around innovation.</p>
             
             
-            <a class="close" href="#close"></a>
+            <a class="close" id="closeinfo" href="#close"></a>
         </div>
 
 

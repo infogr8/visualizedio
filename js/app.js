@@ -3,23 +3,23 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
 
     var speakers = {
-        'Maral Pourkazemi': '@maralllo',
-        'Valentina D\'Efilippo': '@defilippovale',
+        'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
+        'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',
         'Surprise Guest': '',
-        'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra',
-        'William Rowe': '@willprotein',
-        'Pierre La Baume': '@labaume_de',
-        'Kate McLean': '@katemclean',
-        'Kim Albrecht': '@kimay',
-        'Bronwen Robertson': '@small_media',
-        'Stefanie Posavec': '@stefpos',
-        'Pascal Raabe': '@jazzpazz',
-        'Andreas Koller': '@akllr',
-        'Andy Kirk': '@visualisingdata',
-        'Eimar Boesjes': '@eimarb',
-        'Marcin Ignac': '@marcinignac,@variable_io',
-        'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson',
-        'Peter Crnokrak': ''
+        'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra,gandra,maaike',
+        'William Rowe': '@willprotein,@protein,rowe',
+        'Pierre La Baume': '@labaume_de,pierre,baume',
+        'Kate McLean': '@katemclean,smellmapper,mclean',
+        'Kim Albrecht': '@kimay,culturegraphy,albrecht',
+        'Bronwen Robertson': '@small_media,robertson',
+        'Stefanie Posavec': '@stefpos,posavec',
+        'Pascal Raabe': '@jazzpazz,raabe',
+        'Andreas Koller': '@akllr,koller',
+        'Andy Kirk': '@visualisingdata,kirk',
+        'Eimar Boesjes': '@eimarb,moonshadow,boesjes',
+        'Marcin Ignac': '@marcinignac,@variable_io,ignac',
+        'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson,garcia,pearson',
+        'Peter Crnokrak': 'crnokrak,luxury,protest'
     };
 
     $scope.speakers = _.keys(speakers);
