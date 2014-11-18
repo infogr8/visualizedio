@@ -176,9 +176,15 @@ text-decoration: none;
     margin-bottom: 0px;
 }
 
-#signature :hover{
+#signature, #logo a:hover{
    color: #0187D0;
-text-decoration: none;
+text-decoration: none !important;
+}
+
+
+#signature a:hover{
+   color: #0187D0;
+text-decoration: none !important;
 }
 
 #signature :visited{
