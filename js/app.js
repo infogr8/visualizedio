@@ -2,6 +2,13 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 .controller('chartController', function($scope, bubbleChart) {
 
 
+    // these are really keywords, separated by comma's that are
+    // being matched case insensitively against the tweet texts.
+    // e.g. if a tweet is 'Bob Hello World!'
+    // and a speaker is 'bob': '@bob' it will match
+    // also 'pete': 'hello' will match.
+    // To find the speakers better, you can simply at more keywords to 
+    // this object.
     var speakers = {
         'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
         'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',

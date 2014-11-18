@@ -159,7 +159,7 @@ app.factory('bubbleChart', function(urlReplacer) {
         // check if any of the speakers are mentioned.
         return filter.speakers.length === 0 ||
             !!_.find(filter.speakers, function (speaker) {
-                return d.text.indexOf(speaker) !== -1;
+                return d.text.toLowerCase().indexOf(speaker.toLowerCase()) !== -1;
             });
     }
 
