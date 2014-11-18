@@ -40,7 +40,7 @@
   <div class="page" ng-controller="chartController">
     <div class="row">
         <div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12 col-xs-12" id="speakers">  
-            <h4> speakers</h4>
+            <h4>Speakers</h4>
             <h5>Filter the tweets related<br>to each of the speakers<br>at the conference</h5>
 
   
@@ -55,18 +55,18 @@
         </div>
         <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" id="filters">  
             <div>
-            <h4>parameters</h4>
+            <h4>Criteria</h4>
             <h5>Resize depending on the properties <br> of each tweet</h5>
               <button class="btn filters" ng-class="{'active-button': !activeWeight}" ng-click="setWeight()">Relevance</button> 
 
               <button class="btn filters" ng-repeat="weight in weights" ng-class="{'active-button': activeWeight === weight}" ng-click="setWeight(weight)">{{weight}}</button> 
             </div>
             <hr>
-            <h4>keywords</h4>
+            <h4>Keywords</h4>
 
             <button class="btn filters" ng-class="{'active-button': activeKeyword === item.keyword}" ng-click="filterKeyword(item.keyword)" ng-repeat="item in keywords | limitTo:5">{{item.keyword}} ({{item.count}})</button>
             <hr>
-            <h4>#hashtags</h4>
+            <h4>#Hashtags</h4>
             <button class="btn filters" ng-class="{'active-button': activeHashtag === item.keyword}" ng-click="filterHashtag(item.keyword)" ng-repeat="item in hashtags | limitTo:5">{{item.keyword}} ({{item.count}})</button>
             <hr>
             <button class="btn btn-xs all" ng-click="reset()"> <span class="glyphicon glyphicon-remove" style="vertical-align:-1px"></span> Reset Filters</button> 
