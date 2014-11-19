@@ -10,6 +10,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     // To find the speakers better, you can simply at more keywords to 
     // this object.
     var speakers = {
+        'Small Media Workshop': 'dataforchange',
         'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
         'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',
         'Surprise Guest': '',
