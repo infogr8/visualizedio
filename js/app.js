@@ -10,7 +10,6 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     // To find the speakers better, you can simply at more keywords to 
     // this object.
     var speakers = {
-        'Small Media Workshop': 'dataforchange',
         'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
         'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',
         'Surprise Guest': '',
@@ -27,7 +26,8 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         'Eimar Boesjes': '@eimarb,moonshadow,boesjes',
         'Marcin Ignac': '@marcinignac,@variable_io,ignac',
         'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson,garcia,pearson',
-        'Peter Crnokrak': 'crnokrak,luxury,protest'
+        'Peter Crnokrak': 'crnokrak,luxury,protest',
+        'Small Media Workshop': 'dataforchange'
     };
 
     $scope.speakers = _.keys(speakers);
