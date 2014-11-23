@@ -12,7 +12,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     var speakers = {
         'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
         'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',
-        'Surprise Guest': '',
+        'Surprise Guest': '@mccandelish,mccandless',
         'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra,gandra,maaike',
         'William Rowe': '@willprotein,@protein,rowe',
         'Pierre La Baume': '@labaume_de,pierre,baume',

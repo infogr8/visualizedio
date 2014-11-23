@@ -820,6 +820,10 @@ color: #28B5F5;
     font-size: 1em;
 }
 
+#logolabs {
+ margin-top: 14px;
+}
+
 .infopop {
     z-index: 4;
     background-color: #FFFFFF;
