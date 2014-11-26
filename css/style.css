@@ -856,3 +856,9 @@ color: #28B5F5;
     -o-transition: opacity .5s, top .5s;
     transition: opacity .5s, top .5s;
 }
+
+#ffb_feedback {
+height: 110px !important;
+padding: 15px !important;
+
+}
