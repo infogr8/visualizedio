@@ -17,12 +17,12 @@
 <script type="text/javascript" async src="//platform.twitter.com/widgets.js"></script>
 
 
-  <meta content="A dynamic bubble packing of the tweets around the VISUALIZEDio14 conference" name="description">
+  <meta content="a dynamic bubble packing of tweets" name="description">
 
   <meta content="Bubbleized" property="og:title">
   <meta content="Bubbleized" property="og:site_name">
 
-  <meta content="A dynamic bubble packing of the tweets around the VISUALIZEDio14 conference " property="og:description">
+  <meta content="a dynamic bubble packing of tweets" property="og:description">
   <meta content="http://bubble.infogr8.com/img/preview2.png" property="og:image">
   <meta content="image/png" property="og:image:type">
   <meta content="http://bubble.infogr8.com" property="og:url">
@@ -36,8 +36,7 @@
 
     <h1><b></b>bubble<b>ized</b><sup><small> &#x26AC</small></sup></h1>
     <hr>
-    <h3>a dynamic bubble packing of the tweets around the <a href="http://visualized.io/london/" target="_blank">#VISUALIZEDio14</a> London event </h2>
-
+    <h3>a dynamic bubble packing of tweets</h3>
   </header>
 
 
@@ -46,21 +45,16 @@
   <div class="page" ng-controller="chartController">
     <div class="row">
         <div class="col-lg-2 col-lg-offset-1 col-md-2 col-sm-12 col-xs-12" id="speakers">  
-            <h4>Speakers</h4>
-            <h5>Filter the tweets related<br>to each of the speakers<br>at the conference</h5>
-
-  
-            <button class="btn btn-xs speakers" ng-repeat="speaker in speakers" ng-click="filterSpeakers(speaker)" ng-class="{'active-button': speaker === filteredSpeaker}">{{speaker}}</button>
-              <hr>
-              <button class="btn btn-xs all" ng-class="{'active-button': !filteredSpeaker}" ng-click="filterSpeakers()">All the Speakers</button> 
-        </div>
-       
-        <div class=" col-lg-6 col-md-7 col-sm-12 col-xs-12" id="chart">  
-        
-
-        </div>
-        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" id="filters">  
+            <form ng-submit="search()">
             <div>
+            <h4>Search</h4>
+            <h5>Analyse a term on Twitter now</h5>
+            <input type="text" ng-model="query"><br><br>
+            <button type="submit" ng-click="search()" class="btn btn-xs all">Analyze
+                <i class="fa fa-spinner fa-spin" ng-show="loading"></i></button>
+            <hr>
+
+
             <h4>Criteria</h4>
             <h5>Resize depending on the properties <br> of each tweet</h5>
               <button class="btn filters" ng-class="{'active-button': !activeWeight}" ng-click="setWeight()">Relevance</button> 
@@ -76,20 +70,15 @@
             <button class="btn filters" ng-class="{'active-button': activeHashtag === item.keyword}" ng-click="filterHashtag(item.keyword)" ng-repeat="item in hashtags | limitTo:5">{{item.keyword}} ({{item.count}})</button>
             <hr>
             <button class="btn btn-xs all" ng-click="reset()"> <span class="glyphicon glyphicon-remove" style="vertical-align:-1px"></span> Reset Filters</button> 
-
+        </form>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2 col-md-offset-2 ">
-          <button class="btn btn-xs timeframe timefilter" id="timeleft" ng-click="filterBefore()" ng-class="{'active-button': before}">Before the event</button>
+        <div class=" col-lg-6 col-md-7 col-sm-12 col-xs-12" id="chart">  
+            <h5 ng-show="error" class="error">
+                <i class="fa fa-coffee"></i><br>
+                <i class="fa fa-warning"></i> The Twitter service is currently not available, please try again in 15 minutes. ({{error}})</h5>
         </div>
+        <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" id="filters">  
 
-            <div class="col-md-4 col-sm-12 col-xs-12 " disabled="sliderDisabled" range-slider min="0" max="100" model-min="slider.min" model-max="slider.max">
-              
-            </div>
-        
-        <div class="col-md-2 ">
-          <button class="btn btn-lg timeframe timefilter" id="timeright" ng-class="{'active-button': after}" ng-click="filterAfter()">After the event</button>
         </div>
     </div>
   </div>
@@ -149,6 +138,8 @@
         <div class="popup col-md-4 col-sm-6 col-xs-10 infopop" >
             <h2>Info</h2>
             <p>Bubbleized is a collaboration between <br><a href="https://www.linkedin.com/profile/view?id=29262487&authType=NAME_SEARCH&authToken=GAJM&locale=en_US&trk=tyah&trkInfo=tarId%3A1416333172720%2Ctas%3Arichard%20silvester%2Cidx%3A1-1-1" target="_blank">Richard Silvester</a> and <a href="http://www.giuliofagiolini.com" target="_blank">Giulio Fagiolini</a> at <a href="http://infogr8.com/" target="_blank">Infogr8 Labs</a>.<br><br> Currently in beta version, Bubbleized has been developed for the <a href="http://visualized.io/london/" target="_blank">VISUALIZED.IO </a>event in London, to visually explore and interact with the twitter activity pre, during and post the conference. 
+            <br><br>
+            v0.2: Opened up access publicly, added search box, removed event timeline whilst exploring caching options, notification when Twitter API limit is reached.
             <br> 
             <br> 
             Infogr8 Labs is a division of Infogr8 <br> producing visual solutions around innovation.

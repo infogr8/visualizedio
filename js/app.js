@@ -1,37 +1,8 @@
 var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 .controller('chartController', function($scope, bubbleChart) {
 
+    $scope.query = 'data visualisation';
 
-    // these are really keywords, separated by comma's that are
-    // being matched case insensitively against the tweet texts.
-    // e.g. if a tweet is 'Bob Hello World!'
-    // and a speaker is 'bob': '@bob' it will match
-    // also 'pete': 'hello' will match.
-    // To find the speakers better, you can simply at more keywords to 
-    // this object.
-    var speakers = {
-        'Maral Pourkazemi': '@maralllo,maral,pourkazemi',
-        'Valentina D\'Efilippo': '@defilippovale,valentina,efilippo',
-        'Surprise Guest': '@mccandelish,mccandless',
-        'Maria Da Gandra & Maaike Van Neck': '@maalkewave,@infoform,@mariadagandra,gandra,maaike',
-        'William Rowe': '@willprotein,@protein,rowe',
-        'Pierre La Baume': '@labaume_de,pierre,baume',
-        'Kate McLean': '@katemclean,smellmapper,mclean',
-        'Kim Albrecht': '@kimay,culturegraphy,albrecht',
-        'Bronwen Robertson': '@small_media,robertson',
-        'Stefanie Posavec': '@stefpos,posavec',
-        'Pascal Raabe': '@jazzpazz,raabe',
-        'Andreas Koller': '@akllr,koller',
-        'Andy Kirk': '@visualisingdata,kirk',
-        'Eimar Boesjes': '@eimarb,moonshadow,boesjes',
-        'Marcin Ignac': '@marcinignac,@variable_io,ignac',
-        'Pau Garcia & Dani Pearson': '@domesticstream,@danipirson,garcia,pearson',
-        'Peter Crnokrak': 'crnokrak,luxury,protest',
-        'Small Media Workshop': 'dataforchange'
-    };
-
-    $scope.speakers = _.keys(speakers);
-    $scope.filteredSpeaker = '';
     $scope.keywords = {};
     $scope.weights = ['retweets', 'favourites', 'followers'];
 
@@ -51,10 +22,10 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         }
     }
     function getUrl(params) {
-        params.q = getQueryVariable('q') || params.q;
+        params.q = params.q || getQueryVariable('q') || DEFAULT_QUERY;
+        params.count = 100;
 
         var queryString = _.map(params, function(value, key) {
-
             return key + '=' + value;
         }).join('&');
 
@@ -62,10 +33,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
     }
 
     var statuses,
-        url = getUrl({
-            q: 'visualizedio',
-            count: 100
-        });
+        url = getUrl({});
 
     function countKeywords (statuses) {
         var counter = {};
@@ -116,11 +84,24 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 
     var previous;
 
-    $scope.refresh = function () {
-        d3.json(url, function(error, root) {
-            // see if something has changed
+    $scope.search = function () {
+        url = getUrl({
+            q: $scope.query
+        });
+        $scope.refresh();
+    };
 
-            if (!_.isEqual(root, previous)) {
+    $scope.refresh = function () {
+        $scope.loading = true;
+        d3.json(url, function(error, root) {
+            $scope.loading = false;
+
+            if (root && root.errors) {
+                $scope.error = root && root.errors && root.errors.length && root.errors[0] && root.errors[0].message;
+                $scope.$digest();
+            }
+            // see if something has changed
+            else if (root && !_.isEqual(root, previous)) {
                 // deep clone
                 previous = JSON.parse(JSON.stringify(root));
 
@@ -137,9 +118,19 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
                 if (!$scope.inited) {
                     $scope.initListeners();
                 }
+            } else {
+                $scope.$digest();
             }
         });
     };
+
+    // this is to trigger a rate limit overflow
+    // for(var i = 0; i < 180; i++) {
+    //     url = getUrl({
+    //         q: 'test' + i
+    //     });
+    //     $scope.refresh();
+    // }
 
     // yup, every thirty seconds we poll.
     $scope.refresh();
