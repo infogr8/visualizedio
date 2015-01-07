@@ -1,6 +1,9 @@
 var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
 .controller('chartController', function($scope, bubbleChart) {
 
+    // get rid of pesky error flash while assets are loading
+    $('.error').attr('style', '');
+
     $scope.query = 'data visualisation';
 
     $scope.keywords = {};
@@ -22,7 +25,7 @@ var app = app || angular.module('bubbleApp', ['ui-rangeSlider'])
         }
     }
     function getUrl(params) {
-        params.q = params.q || getQueryVariable('q') || DEFAULT_QUERY;
+        params.q = params.q || getQueryVariable('q') || 'data%20visualisation';
         params.count = 100;
 
         var queryString = _.map(params, function(value, key) {
